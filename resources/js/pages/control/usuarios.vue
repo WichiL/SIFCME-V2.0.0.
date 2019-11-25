@@ -78,7 +78,7 @@
         <v-row align="center" justify="space-between">
             <v-col cols="4"></v-col>
             <v-col cols="4">
-                <v-pagination color="purple" v-model="page" :length="pageCount"></v-pagination>              
+                <v-pagination color="#9F2A2A" v-model="page" :length="pageCount"></v-pagination>              
             </v-col>
             <v-col cols="4">
                 <v-col cols="6">

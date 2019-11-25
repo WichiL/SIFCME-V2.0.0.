@@ -29,7 +29,7 @@
             v-if="item.heading"
             :key="item.heading"
             align="center"
-          >
+           >
             <v-col cols="6">
               <v-subheader v-if="item.heading">
                 <strong><h4>{{ item.heading }}</h4></strong>
@@ -37,53 +37,53 @@
             </v-col>
               <v-divider></v-divider>
           </v-row>
+
           <v-list-group
+            :prepend-icon="item.icon"
             v-else-if="item.children"
             :key="item.text"
+            no-action
             v-model="item.model"
-            :append-icon="item.model ? item.icon : item['icon-alt']"
-            :prepend-icon="item.icon1"
-          >
+            >
             <template v-slot:activator>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title align="center">
-                    {{ item.text }}
-                  </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>
+                  {{ item.text }}
+                </v-list-item-title>
+              </v-list-item-content>
             </template>
+            
             <v-list-item
               v-for="(child, i) in item.children"
               :key="i"
               :to="child.path"
               link
-            >
-              <v-list-item-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>
+              >
+              
+              <v-list-item-title>
                   {{ child.text }}
-                </v-list-item-title>
-              </v-list-item-content>
+              </v-list-item-title>
+              <v-list-item-icon>
+                <v-icon>{{ child.icon }}</v-icon>
+              </v-list-item-icon>
+                
             </v-list-item>
           </v-list-group>
+
           <v-list-item
             v-else
             :key="item.text"
             :to="item.path"
             link
-          >
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
+            >
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
               <v-list-item-title>
                 {{ item.text }}
               </v-list-item-title>
-            </v-list-item-content>
           </v-list-item>
+          
         </template>
       </v-list>
     </v-navigation-drawer>
@@ -241,9 +241,7 @@
         {  heading: 'General' },
         { icon: 'mdi-desktop-mac-dashboard', text: 'Dashboard', path: '/dashboard'},
         {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
-          icon1: 'mdi-face-profile',
+          icon: 'mdi-book-open-page-variant',
           text: 'Solicitudes',
           model: false,
           children: [
@@ -253,10 +251,8 @@
         },
         { icon: 'mdi-account-multiple', text: 'Usuarios', path:'/usuarios' },
         {
-          icon: 'mdi-chevron-up',
-          'icon-alt': 'mdi-chevron-down',
           text: 'Administración',
-          icon1: 'mdi-face-profile',
+          icon: 'mdi-face-profile',
           model: false,
           children: [
             { icon: 'mdi-account-settings', text: 'Perfil', path: '/settings'},

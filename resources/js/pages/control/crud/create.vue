@@ -1,6 +1,6 @@
 <template>
 
-    <v-container aling="center" :loading="loading">
+    <v-container aling="center">
         <v-overlay :value="loader">
             <v-progress-circular
                 indeterminate 
@@ -174,7 +174,7 @@
                             </v-icon>    
                         </v-btn>
                     </router-link>
-                    <v-btn class="ma-2" :loading="loading" color="success darken-1" rounded large elevation-24 type="submit">
+                    <v-btn class="ma-2" :loading="loader" color="success darken-1" rounded large elevation-24 type="submit">
                         Guardar 
                         <v-icon medium right >
                             mdi-content-save
@@ -215,7 +215,6 @@ export default {
         show1: false,
         show2: false,
         alert: false,
-        loading: false,
         loader: false,
         user: new Form({
             id: '',
@@ -276,7 +275,6 @@ export default {
 
         createUser () {
             this.alert = false
-            this.loading = true
             this.loader = true
             this.$v.$touch()
             this.user.post('/api/register')
@@ -292,7 +290,6 @@ export default {
                     type: 'error',
                     title: 'Ocurrio un Error!'
                 })
-                this.loading = false
                 this.loader = false
                 this.alert = true
                 // let errors = error.response.data.errors
