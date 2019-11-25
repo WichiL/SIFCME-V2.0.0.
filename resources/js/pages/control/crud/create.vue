@@ -108,8 +108,8 @@
                             </v-col>
                             <v-col cols="6">
                                 <v-text-field color="purple lighten-2" class="title"
-                                    :counter="8"
-                                    maxlength="8"
+                                    :counter="10"
+                                    maxlength="10"
                                     shaped
                                     rounded
                                     filled
@@ -121,15 +121,15 @@
                                     @blur="$v.user.password.$touch()" 
                                     @input="$v.user.password.$touch()"
                                     label="Contraseña"
-                                    hint="Elija una contraseña de maximo 8 caracteres">
+                                    hint="Elija una contraseña de maximo 10 caracteres">
                                 </v-text-field>
                             </v-col>
                         </v-row>    
                         <v-row align="center" justify="center">    
                             <v-col cols="6">
                                 <v-text-field color="purple lighten-2" class="title"
-                                    :counter="8"
-                                    maxlength="8"
+                                    :counter="10"
+                                    maxlength="10"
                                     shaped
                                     rounded
                                     filled
@@ -204,7 +204,7 @@ export default {
             username: { required, maxLength: maxLength(12) },
             email: { required, email },
             rol: { required },
-            password: { required, maxLength: maxLength(8), sameAs },
+            password: { required, maxLength: maxLength(10), sameAs },
             password_confirmation: { sameAs: sameAs('password') },
         }
     },

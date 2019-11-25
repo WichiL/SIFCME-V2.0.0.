@@ -34,11 +34,18 @@ class UserController extends Controller
             'name' => 'required|string|max:191',
             'username' => 'required|string|max:12',
             'email' => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'sometimes|min:8',
+            'password' => 'required|confirmed|min:8',
             'rol' => 'required|string|max:15'
         ]);
 
-        $user->update($request->all());
+        $user->update([
+            'name' => $request['name'],
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'rol' => $request['rol'],
+            'password' => bcrypt($request['password']),
+        ]);
+        // $user->update($request->all());
 
         // return ['message' => 'usuario actualizado'];
     }
