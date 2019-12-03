@@ -81,7 +81,7 @@
                                     rounded
                                     filled
                                     prepend-inner-icon="mdi-account"
-                                    v-model="user.username" 
+                                    v-model="user.username"
                                     :error-messages="usernameErrors"
                                     @blur="$v.user.username.$touch()" 
                                     @input="$v.user.username.$touch()"

@@ -5,6 +5,10 @@ import i18n from '~/plugins/i18n'
 import App from '~/components/App'
 import vuetify from '~/plugins/vuetify'
 import * as vuemask from '~/plugins/vuemask'
+import * as vueformwizard from '~/plugins/vueformwizard'
+import * as moment from '~/plugins/moment'
+import * as vcurrency from '~/plugins/vcurrency'
+import { Form, HasError, AlertError } from 'vform'
 
 import '~/plugins'
 import '~/components'
@@ -22,8 +26,11 @@ const Toast = Swal.mixin({
 })
 
 window.toast = Toast
+window.Form = Form
 
 Vue.config.productionTip = false
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
 
 /* eslint-disable no-new */
 new Vue({
@@ -34,5 +41,8 @@ new Vue({
   router,
   vuetify,
   vuemask,
+  vueformwizard,
+  moment,
+  vcurrency,
   ...App
 })

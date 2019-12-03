@@ -99,14 +99,14 @@
       >
         <span class="hidden-sm-and-down">{{ appName }}</span>
       </v-toolbar-title>
-      <v-text-field
+      <!-- <v-text-field
         flat
         solo-inverted
         hide-details
         prepend-inner-icon="mdi-magnify"
         label="Search"
         class="hidden-sm-and-down"
-      />
+      /> -->
       <v-spacer />
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -246,7 +246,7 @@
           model: false,
           children: [
             { icon: 'mdi-book-open-page-variant', text: 'Ver solicitudes', path:'/solicitudes' },
-            { icon: 'mdi-note-plus', text: 'Crear Solicitud', path:'/nuevaSolicitud' },
+            { icon: 'mdi-note-plus', text: 'Crear Solicitud', path:'/nueva/solicitud' },
           ],
         },
         { icon: 'mdi-account-multiple', text: 'Usuarios', path:'/usuarios' },
