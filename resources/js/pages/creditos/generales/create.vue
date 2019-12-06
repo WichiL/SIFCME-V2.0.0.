@@ -50,6 +50,8 @@
                     </v-card>
                 </v-row>
             </v-col>
+<v-form @submit.prevent="register" @keydown="form.onKeydown($event)">
+
             <v-card>
                 <v-stepper v-model="el"
                     alt-labels
@@ -70,7 +72,6 @@
                         <v-stepper-step color="green" :rules="[() => err6]"  editable step="7"><p class="subtitle-2 text-center">Justificación y Destino del Crédito</p></v-stepper-step>
                         <v-divider></v-divider>
                     </v-stepper-header>
-
                     <v-stepper-items>
 
                         <v-stepper-content step="1">
@@ -86,8 +87,8 @@
                                     ></v-img>
                                 </template>
                                 <v-radio-group v-model="form.regimen" :mandatory="false">
-                                    <v-radio label="Persona Moral" value="1"></v-radio>
-                                    <v-radio label="Persona Fisica" value="0"></v-radio>
+                                    <v-radio label="Persona Moral" value="Persona Moral"></v-radio>
+                                    <v-radio label="Persona Fisica" value="Persona Física"></v-radio>
                                 </v-radio-group>
                             </v-row>                            
                         </v-stepper-content>
@@ -95,7 +96,7 @@
                         <v-stepper-content step="2">
                             <v-container
                                 class="mb-12">
-                                <v-row v-if="form.regimen>0" align="center" justify="space-between">
+                                <v-row v-if="form.regimen>='Persona Moral'" align="center" justify="space-between">
                                     <v-col cols="6">
                                         <v-text-field  color="purple lighten-2" class="title"
                                             v-model="form.nomEmpresa"
@@ -103,9 +104,6 @@
                                             rounded
                                             filled
                                             prepend-inner-icon="mdi-account"
-                                            :error-messages="nomEmpresa"
-                                            @blur="$v.form.nomEmpresa.$touch()" 
-                                            @input="$v.form.nomEmpresa.$touch()"
                                             label="Nombre de la Empresa">
                                         </v-text-field>                        
                                     </v-col>
@@ -116,9 +114,6 @@
                                             rounded
                                             filled
                                             prepend-inner-icon="mdi-account"
-                                            :error-messages="rfcEmpresa"
-                                            @blur="$v.form.rfcEmpresa.$touch()" 
-                                            @input="$v.form.rfcEmpresa.$touch()"
                                             maxlength="12"
                                             label="RFC de la Empresa">
                                         </v-text-field>                        
@@ -404,7 +399,7 @@
                                 class="mb-12"
                                 >
                                 <v-row align="center" justify="space-between">
-                                    <v-col cols="4">
+                                    <v-col cols="6">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.email"
                                             shaped
@@ -417,7 +412,7 @@
                                             label="Email">
                                         </v-text-field>                        
                                     </v-col>
-                                    <v-col cols="4">
+                                    <v-col cols="6">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.facTwitter"
                                             shaped
@@ -431,6 +426,8 @@
                                             hint="Nombre comoo aparece en FB/TW">
                                         </v-text-field>                        
                                     </v-col>
+                                </v-row>    
+                                <v-row align="center" justify="space-between">
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.telNegocio"
@@ -446,9 +443,7 @@
                                             hint="Ingrese un número a contactar del negocio"
                                             maxlenght="19">
                                         </v-text-field>                        
-                                    </v-col>
-                                </v-row>    
-                                <v-row align="center" justify="space-between">    
+                                    </v-col>    
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.telParticular"
@@ -481,6 +476,8 @@
                                             maxlenght="19">
                                         </v-text-field>                        
                                     </v-col>
+                                </v-row>   
+                                <v-row align="center" justify="space-between">
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.telRecados"
@@ -497,7 +494,22 @@
                                             maxlenght="19">
                                         </v-text-field>                        
                                     </v-col>
-                                </v-row>   
+                                    <v-col cols="8">
+                                        <v-text-field color="purple lighten-2" class="title"
+                                            v-model="form.perRecados"
+                                            shaped
+                                            rounded
+                                            filled
+                                            prepend-inner-icon="mdi-account"
+                                            :error-messages="perRecados"
+                                            @blur="$v.form.perRecados.$touch()" 
+                                            @input="$v.form.perRecados.$touch()"
+                                            label="Persona a Contactar"
+                                            hint="Nombre de la persona que recibe los recados"
+                                            maxlenght="19">
+                                        </v-text-field>                        
+                                    </v-col>
+                                </v-row>    
                             </v-container>
                         </v-stepper-content>
 
@@ -515,7 +527,6 @@
                                             v-mask="cp"
                                             prepend-inner-icon="mdi-map-marker"
                                             :error-messages="cpParticular"
-                                            v-on:change="listarColonias"
                                             @blur="$v.form.cpParticular.$touch()" 
                                             @input="$v.form.cpParticular.$touch()"
                                             label="Código Postal">
@@ -549,6 +560,7 @@
                                         </v-text-field>                        
                                     </v-col>
                                 </v-row> 
+
                                 <v-row align="center" justify="space-between">
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
@@ -564,7 +576,7 @@
                                         </v-text-field>                        
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                        <v-select color="purple lighten-2" class="title"
                                             v-model="form.tipVivParticular"
                                             shaped
                                             rounded
@@ -573,11 +585,12 @@
                                             :error-messages="tipVivParticular"
                                             @blur="$v.form.tipVivParticular.$touch()" 
                                             @input="$v.form.tipVivParticular.$touch()"
-                                            label="Tipo de Vivienda">
-                                        </v-text-field>                        
+                                            label="Tipo de Vivienda"
+                                            :items="['Casa', 'Departamento']">
+                                        </v-select>                        
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                        <v-select color="purple lighten-2" class="title"
                                             v-model="form.antLocParticular"
                                             shaped
                                             rounded
@@ -586,10 +599,12 @@
                                             :error-messages="antLocParticular"
                                             @blur="$v.form.antLocParticular.$touch()" 
                                             @input="$v.form.antLocParticular.$touch()"
-                                            label="Antiguedad en la Localidad">
-                                        </v-text-field>                        
+                                            label="Antiguedad en la Localidad"
+                                            :items="['Mayor a 2 años', 'Menor a 2 años']">
+                                        </v-select>                        
                                     </v-col>
                                 </v-row>     
+                                
                                 <v-row align="center" justify="space-between">
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
@@ -598,9 +613,9 @@
                                             rounded
                                             filled
                                             prepend-inner-icon="mdi-timelapse"
-                                            :error-messages="antLocParticular"
-                                            @blur="$v.form.antLocParticular.$touch()" 
-                                            @input="$v.form.antLocParticular.$touch()"
+                                            :error-messages="antDomActualPar"
+                                            @blur="$v.form.antDomActualPar.$touch()" 
+                                            @input="$v.form.antDomActualPar.$touch()"
                                             label="Antiguedad en Domicilio Actual">
                                         </v-text-field>                        
                                     </v-col>
@@ -615,11 +630,11 @@
                                             @blur="$v.form.tipDomParticular.$touch()" 
                                             @input="$v.form.tipDomParticular.$touch()"
                                             label="Tipo de Domicilio"
-                                            :items="['Propio', 'Rentado', 'Prestado']">
+                                            :items="['Propio', 'Rentado', 'Prestado', 'Pagando']">
                                         </v-select>                        
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-currency-field color="purple lighten-2" class="title"
+                                        <v-currency-field v-if="form.tipDomParticular=='Propio'" color="purple lighten-2" class="title"
                                             v-model="form.valProParticular"
                                             shaped
                                             rounded
@@ -629,7 +644,29 @@
                                             @blur="$v.form.valProParticular.$touch()" 
                                             @input="$v.form.valProParticular.$touch()"
                                             label="Valor de la Propiedad">
-                                        </v-currency-field>                 
+                                        </v-currency-field>  
+                                        <v-currency-field v-if="form.tipDomParticular=='Pagando'" color="purple lighten-2" class="title"
+                                            v-model="form.valProParticular"
+                                            shaped
+                                            rounded
+                                            filled
+                                            prepend-inner-icon="mdi-currency-usd"
+                                            :error-messages="valProParticular"
+                                            @blur="$v.form.valProParticular.$touch()" 
+                                            @input="$v.form.valProParticular.$touch()"
+                                            label="¿Cuanto paga mensualmente?">
+                                        </v-currency-field> 
+                                        <v-currency-field v-if="form.tipDomParticular=='Rentado'" color="purple lighten-2" class="title"
+                                            v-model="form.valProParticular"
+                                            shaped
+                                            rounded
+                                            filled
+                                            prepend-inner-icon="mdi-currency-usd"
+                                            :error-messages="valProParticular"
+                                            @blur="$v.form.valProParticular.$touch()" 
+                                            @input="$v.form.valProParticular.$touch()"
+                                            label="Renta Mensual">
+                                        </v-currency-field>                
                                     </v-col>
                                 </v-row>      
                             </v-container>
@@ -697,7 +734,7 @@
                                         </v-text-field>                        
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                        <v-select color="purple lighten-2" class="title"
                                             v-model="form.domFiscal"
                                             shaped
                                             rounded
@@ -706,10 +743,28 @@
                                             :error-messages="domFiscal"
                                             @blur="$v.form.domFiscal.$touch()" 
                                             @input="$v.form.domFiscal.$touch()"
-                                            label="Domicilio Fiscal">
-                                        </v-text-field>                        
+                                            label="Domicilio Fiscal corresponde a"
+                                            :items="['Domicilio Particular', 'Domicilio del Negocio', 'Otro']">
+                                        </v-select>                        
                                     </v-col>
                                     <v-col cols="4">
+                                        <v-text-field v-if="form.domFiscal=='Otro'" color="purple lighten-2" class="title"
+                                            v-model="form.otroDomNegocio"
+                                            shaped
+                                            rounded
+                                            filled
+                                            prepend-inner-icon="mdi-map-marker"
+                                            :error-messages="otroDomNegocio"
+                                            @blur="$v.form.otroDomNegocio.$touch()" 
+                                            @input="$v.form.otroDomNegocio.$touch()"
+                                            label="Ingrese el Domicilio"
+                                            hint="Indique calle, num, colonia, municipio. Debe coincidir con la info del SAT">
+                                        </v-text-field>                        
+                                    </v-col>
+                                </v-row>  
+
+                                <v-row align="center" justify="space-between">
+                                    <v-col cols="3">
                                         <v-select color="purple lighten-2" class="title"
                                             v-model="form.sector"
                                             shaped
@@ -720,13 +775,12 @@
                                             @blur="$v.form.sector.$touch()" 
                                             @input="$v.form.sector.$touch()"
                                             label="Sector"
-                                            :items="['Industria', 'Comercio', 'Servicios']">
+                                            :items="['Agroindustria', 'Artesanias', 'Automotriz',
+                                            'Comercio', 'Industria', 'MetalMecánca', 'Minería', 
+                                            'Servicio', 'Tecnologías de la Infomación', 'Turismo']">
                                         </v-select>                        
                                     </v-col>
-                                </v-row>  
-
-                                <v-row align="center" justify="space-between">
-                                    <v-col cols="5">
+                                    <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.actEmpresarial"
                                             shaped
@@ -740,7 +794,7 @@
                                             hint="¿Que tipo de negocio es/será?">
                                         </v-text-field>                        
                                     </v-col>
-                                    <v-col cols="7">
+                                    <v-col cols="5">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.proOfrece"
                                             shaped
@@ -786,18 +840,34 @@
                                         </v-text-field>                        
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.iniOperaciones"
-                                            shaped
-                                            rounded
-                                            v-mask="fecha"
-                                            filled
-                                            prepend-inner-icon="mdi-calendar-question"
-                                            :error-messages="iniOperaciones"
-                                            @blur="$v.form.iniOperaciones.$touch()" 
-                                            @input="$v.form.iniOperaciones.$touch()"
-                                            label="Inicio de Operaciones">
-                                        </v-text-field>                        
+                                        <v-menu
+                                            v-model="menu1"
+                                            :close-on-content-click="false"
+                                            :nudge-right="40"
+                                            transition="scale-transition"
+                                            offset-y
+                                            min-width="290px"
+                                        >
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field
+                                                color="purple lighten-2" 
+                                                class="title"
+                                                shaped
+                                                rounded
+                                                filled
+                                                :value="dateFormatOpe"
+                                                :error-messages="iniOperaciones"
+                                                @blur="$v.form.iniOperaciones.$touch()" 
+                                                @input="$v.form.iniOperaciones.$touch()"
+                                                label="Inicio de Operaciones"
+                                                prepend-inner-icon="mdi-calendar-question"
+                                                readonly
+                                                v-on="on"
+                                            ></v-text-field>
+                                            </template>
+                                            <v-date-picker color="green lighten-1" locale="es" v-model="form.iniOperaciones" @input="menu1 = false"></v-date-picker>
+                                        </v-menu>
+                                                     
                                     </v-col>
                                 </v-row> 
 
@@ -817,7 +887,7 @@
                                             label="Superficie del Negocio">
                                         </v-text-field>                        
                                     </v-col>
-                                    <v-col cols="8">
+                                    <v-col cols="4">
                                         <v-select color="purple lighten-2" class="title"
                                             v-model="form.perteneceA"
                                             shaped
@@ -828,8 +898,21 @@
                                             @blur="$v.form.perteneceA.$touch()" 
                                             @input="$v.form.perteneceA.$touch()"
                                             label="Local donde se Localizara"
-                                            :items="['Bodega', 'Local', 'Casa', 'Mercado']">
+                                            :items="['Propio', 'Familiar', 'Rentado', 'Prestado']">
                                         </v-select>                        
+                                    </v-col>
+                                    <v-col cols="4">
+                                        <v-currency-field v-if="form.perteneceA=='Rentado'" color="purple lighten-2" class="title"
+                                            v-model="form.rentaNegocio"
+                                            shaped
+                                            rounded
+                                            filled
+                                            prepend-inner-icon="mdi-currency-usd"
+                                            :error-messages="rentaNegocio"
+                                            @blur="$v.form.rentaNegocio.$touch()" 
+                                            @input="$v.form.rentaNegocio.$touch()"
+                                            label="¿Cuánto paga de renta?">
+                                        </v-currency-field>                        
                                     </v-col>
                                 </v-row> 
                             </v-container>
@@ -842,6 +925,8 @@
                                 <v-row align="center" justify="space-between">
                                     <v-col cols="12">
                                         <v-textarea
+                                            color="purple lighten-2" 
+                                            class="title"
                                             v-model="form.justCredito"
                                             shaped
                                             rounded
@@ -856,50 +941,197 @@
                                         </v-textarea>
                                     </v-col>        
                                 </v-row>
-
+                                <v-row align="center" justify="start">
+                                    <v-list-item-title> <p class="title white-text">ESPECIFIQUE EL DESTINO DEL CRÉDITO</p> </v-list-item-title>
+                                    <p class="subtitle">Seleccione uno o varios destinos del Crédito</p> 
+                                </v-row>
+                                <v-row align="center" justify="space-between">                                   
+                                    <v-checkbox v-model="capital" class="mx-2" label="Capital de Trabajo"></v-checkbox>
+                                    <v-checkbox v-model="maquinaria" class="mx-2" label="Maquinaria y/o Equipo de Operación"></v-checkbox>
+                                    <v-checkbox v-model="instalaciones" class="mx-2" label="Instalaciones Físicas"></v-checkbox>
+                                </v-row>
+                                
                                 <v-row align="center" justify="space-between">
-                                    <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.capTrabajo"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-shopping"
-                                            :error-messages="capTrabajo"
-                                            @blur="$v.form.capTrabajo.$touch()" 
-                                            @input="$v.form.capTrabajo.$touch()"
-                                            label="Capital Trabajo"
-                                            hint="¿Cuales son algunos de sus capitales?">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="4">
-                                        <v-currency-field color="purple lighten-2" class="title"
-                                            v-model="form.monto"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-currency-usd"
-                                            :error-messages="monto"
-                                            @blur="$v.form.monto.$touch()" 
-                                            @input="$v.form.monto.$touch()"
-                                            label="Monto">
-                                        </v-currency-field>                        
-                                    </v-col>
-                                    <v-col cols="4">
-                                        <v-select color="purple lighten-2" class="title"
-                                            v-model="form.plazo"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-calendar-question"
-                                            :error-messages="plazo"
-                                            @blur="$v.form.plazo.$touch()" 
-                                            @input="$v.form.plazo.$touch()"
-                                            label="Plazo"
-                                            :items="['12 Meses', '18 Meses', '24 Meses', '30 Meses', '36 Meses',]">
-                                        </v-select>                        
-                                    </v-col>
-                                </v-row>      
+                                    <template>
+                                        <v-expansion-panels>
+                                            <v-expansion-panel v-if="capital">
+                                                <v-expansion-panel-header>Capital de Trabajo</v-expansion-panel-header>
+                                                <v-expansion-panel-content>
+                                                     <v-row align="center" justify="space-between">
+                                                        <v-col cols="4">
+                                                            <v-text-field color="purple lighten-2" class="title"
+                                                                v-model="form.desCap"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-shopping"
+                                                                :error-messages="desCap"
+                                                                @blur="$v.form.desCap.$touch()" 
+                                                                @input="$v.form.desCap.$touch()"
+                                                                label="Destino del Crédito"
+                                                                hint="Especificar (Mercancías, materia prima, gastos de operación, etc.)">
+                                                            </v-text-field>                        
+                                                        </v-col>
+                                                        <v-col cols="4">
+                                                            <v-currency-field color="purple lighten-2" class="title"
+                                                                v-model="form.monCap"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-currency-usd"
+                                                                :error-messages="monCap"
+                                                                @blur="$v.form.monCap.$touch()" 
+                                                                @input="$v.form.monCap.$touch()"
+                                                                label="Monto">
+                                                            </v-currency-field>                        
+                                                        </v-col>
+                                                        <v-col cols="4">
+                                                            <v-select color="purple lighten-2" class="title"
+                                                                v-model="form.plaCap"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-calendar-question"
+                                                                :error-messages="plaCap"
+                                                                @blur="$v.form.plaCap.$touch()" 
+                                                                @input="$v.form.plaCap.$touch()"
+                                                                label="Plazo"
+                                                                :items="['12 Meses', '18 Meses', '24 Meses', '30 Meses', '36 Meses',]">
+                                                            </v-select>                        
+                                                        </v-col>
+                                                    </v-row>      
+                                                </v-expansion-panel-content>
+                                            </v-expansion-panel>   
+
+                                            <v-expansion-panel v-if="maquinaria">
+                                                <v-expansion-panel-header>Maquinaria y/o Equipo de Operación</v-expansion-panel-header>
+                                                <v-expansion-panel-content>
+                                                     <v-row align="center" justify="space-between">
+                                                        <v-col cols="3">
+                                                            <v-text-field color="purple lighten-2" class="title"
+                                                                v-model="form.desMaq"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-shopping"
+                                                                :error-messages="desMaq"
+                                                                @blur="$v.form.desMaq.$touch()" 
+                                                                @input="$v.form.desMaq.$touch()"
+                                                                label="Destino del Crédito"
+                                                                hint="Especificar (Maquinas, estantería, mobiliario, equipode transporte, etc.)">
+                                                            </v-text-field>                        
+                                                        </v-col>
+                                                        <v-col cols="3">
+                                                            <v-currency-field color="purple lighten-2" class="title"
+                                                                v-model="form.monMaq"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-currency-usd"
+                                                                :error-messages="monMaq"
+                                                                @blur="$v.form.monMaq.$touch()" 
+                                                                @input="$v.form.monMaq.$touch()"
+                                                                label="Monto">
+                                                            </v-currency-field>                        
+                                                        </v-col>
+                                                        <v-col cols="3">
+                                                            <v-select color="purple lighten-2" class="title"
+                                                                v-model="form.plaMaq"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-calendar-question"
+                                                                :error-messages="plaMaq"
+                                                                @blur="$v.form.plaMaq.$touch()" 
+                                                                @input="$v.form.plaMaq.$touch()"
+                                                                label="Plazo"
+                                                                :items="['12 Meses', '18 Meses', '24 Meses', '30 Meses', '36 Meses',]">
+                                                            </v-select>                        
+                                                        </v-col>
+                                                        <v-col cols="3">
+                                                            <v-select color="purple lighten-2" class="title"
+                                                                v-model="form.graMaq"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-calendar-question"
+                                                                :error-messages="graMaq"
+                                                                @blur="$v.form.graMaq.$touch()" 
+                                                                @input="$v.form.graMaq.$touch()"
+                                                                label="Gracia"
+                                                                :items="['0 Meses', '1 Mes', '2 Meses', '3 Meses', '4 Meses', '5 Meses', '6 Meses']">
+                                                            </v-select>                        
+                                                        </v-col>
+                                                    </v-row>      
+                                                </v-expansion-panel-content>
+                                            </v-expansion-panel>            
+
+                                            <v-expansion-panel v-if="instalaciones">
+                                                <v-expansion-panel-header>Instalaciones Físicas</v-expansion-panel-header>
+                                                <v-expansion-panel-content>
+                                                     <v-row align="center" justify="space-between">
+                                                        <v-col cols="3">
+                                                            <v-text-field color="purple lighten-2" class="title"
+                                                                v-model="form.desIns"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-shopping"
+                                                                :error-messages="desIns"
+                                                                @blur="$v.form.desIns.$touch()" 
+                                                                @input="$v.form.desIns.$touch()"
+                                                                label="Destino del Crédito"
+                                                                hint="Especificar (Construcción, ampliación y remodelación)">
+                                                            </v-text-field>                        
+                                                        </v-col>
+                                                        <v-col cols="3">
+                                                            <v-currency-field color="purple lighten-2" class="title"
+                                                                v-model="form.monIns"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-currency-usd"
+                                                                :error-messages="monIns"
+                                                                @blur="$v.form.monIns.$touch()" 
+                                                                @input="$v.form.monIns.$touch()"
+                                                                label="Monto">
+                                                            </v-currency-field>                        
+                                                        </v-col>
+                                                        <v-col cols="3">
+                                                            <v-select color="purple lighten-2" class="title"
+                                                                v-model="form.plaIns"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-calendar-question"
+                                                                :error-messages="plaIns"
+                                                                @blur="$v.form.plaIns.$touch()" 
+                                                                @input="$v.form.plaIns.$touch()"
+                                                                label="Plazo"
+                                                                :items="['12 Meses', '18 Meses', '24 Meses', '30 Meses', '36 Meses',]">
+                                                            </v-select>                        
+                                                        </v-col>
+                                                        <v-col cols="3">
+                                                            <v-select color="purple lighten-2" class="title"
+                                                                v-model="form.graIns"
+                                                                shaped
+                                                                rounded
+                                                                filled
+                                                                prepend-inner-icon="mdi-calendar-question"
+                                                                :error-messages="graIns"
+                                                                @blur="$v.form.graIns.$touch()" 
+                                                                @input="$v.form.graIns.$touch()"
+                                                                label="Gracia"
+                                                                :items="['0 Meses', '1 Mes', '2 Meses', '3 Meses', '4 Meses', '5 Meses', '6 Meses']">
+                                                            </v-select>                        
+                                                        </v-col>
+                                                    </v-row>      
+                                                </v-expansion-panel-content>
+                                            </v-expansion-panel>                                                                       
+                                        </v-expansion-panels>
+                                    </template>
+                                </v-row>    
+                               
                             </v-container>
                         </v-stepper-content>
                         
@@ -918,21 +1150,13 @@
                 </router-link>
                 
                 <v-spacer></v-spacer>
-                
-                <!-- <v-btn @click="backStep()" v-if="btnBack" class="ma-2" color="grey darken-2" rounded large elevation-24 type="submit">
-                    Atras 
+                <v-btn v-if="el==='1'" class="ma-2" @click="createSolicitud()" :loading="loader" color="success darken-1" rounded large elevation-24 type="submit">
+                    Continuar 
                     <v-icon medium right >
-                        mdi-arrow-left-circle
+                        mdi-content-save
                     </v-icon>
                 </v-btn>
-                
-                <v-btn v-if="btnNext" @click="nextStep()" class="ma-2" color="primary" rounded large elevation-24 type="submit">
-                    Siguiente 
-                    <v-icon medium right >
-                        mdi-arrow-right-circle
-                    </v-icon>
-                </v-btn>
-                 -->
+
                 <v-btn v-if="el>1" class="ma-2" @click="createGenerales()" :loading="loader" color="success darken-1" rounded large elevation-24 type="submit">
                     Guardar 
                     <v-icon medium right >
@@ -940,6 +1164,7 @@
                     </v-icon>
                 </v-btn>
             </v-card-actions>
+    </v-form>
         </v-card>
     </v-container>      
 </template>
@@ -965,8 +1190,8 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
         form:{  
             nomSolicitante: { required, maxLength: maxLength(191), soloLetras },
             fecNacimiento: { required },
-            nomEmpresa: {requiredIf},
-            rfcEmpresa: {requiredIf},
+            nomEmpresa: { required },
+            rfcEmpresa: { requiredIf },
             estNacimiento: { required },
             munNacimiento: { required },
             edad: { required, numeric },
@@ -991,6 +1216,7 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             telParticular: { required },
             telCelular: { required },
             telRecados: { required },
+            perRecados: { required },
 
             //STEP4
             calNumPar: { required },
@@ -999,6 +1225,7 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             cpParticular: { required },
             tipVivParticular: { required },
             antLocParticular: { required },
+            antDomActualPar: { required },
             tipDomParticular: { required },
             valProParticular: { required },
 
@@ -1008,6 +1235,7 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             munNegocio: { required },
             cpNegocio: { required },
             domFiscal: { required },
+            otroDomNegocio: { requiredIf },
             sector: { required },
             actEmpresarial: { required },
             proOfrece: { required },
@@ -1016,12 +1244,24 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             iniOperaciones: { required },
             supNegocio: { required },
             perteneceA: { required },
+            rentaNegocio: { required },
 
             //STEP6
             justCredito: { required },
-            capTrabajo: { required },
-            monto: { required },
-            plazo: { required }
+            desCap: { required },
+            monCap: { required },
+            plaCap: { required },
+
+            desMaq: { required },
+            monMaq: { required },
+            plaMaq: { required },
+            graMaq: { required },
+
+            desIns: { required },
+            monIns: { required },
+            plaIns: { required },
+            graIns: { required },
+
         }
     },
 
@@ -1032,11 +1272,15 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
     middleware: 'auth',
     
     data: () => ({
-        el: 1,
+        el: "1",
         menu2: false,
+        menu1: false,
         btnSave: false,
         btnBack: false,
         btnNext: true,
+        instalaciones: false,
+        maquinaria: false,
+        capital: false,
         alert: false,
         loader: false,
         err1: true,
@@ -1058,11 +1302,15 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
         tel: '(###)-###-####',
         cp: '#####',
 
+        
         form: new Form({
             id: '',
-            regimen: '0',
+            solicitud_id: '',
+            generales_id: '',
+            destino_id: '',
+            estado: 'inicial',
+            regimen: 'Persona Física',
             idPromotor: '',
-            estado: 'Activo',
             nomSolicitante: '',
             nomEmpresa: '',
             rfcEmpresa: '',
@@ -1091,6 +1339,7 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             telParticular: '',
             telCelular: '',
             telRecados: '',
+            perRecados: '',
 
             //STEP4
             calNumPar: '',
@@ -1099,6 +1348,7 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             cpParticular: '',
             tipVivParticular: '',
             antLocParticular: '',
+            antDomActualPar: '',
             tipDomParticular: '',
             valProParticular: '',
 
@@ -1108,6 +1358,7 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             munNegocio: '',
             cpNegocio: '',
             domFiscal: '',
+            otroDomNegocio: '',
             sector: '',
             actEmpresarial: '',
             proOfrece: '',
@@ -1116,18 +1367,33 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             iniOperaciones: '',
             supNegocio: '',
             perteneceA: '',
+            rentaNegocio: '',
 
             //STEP6
             justCredito: '',
-            capTrabajo: '',
-            monto: '',
-            plazo: ''
+            tipoDestino: '',
+            desCap: '',
+            monCap: '',
+            plaCap: '',
+
+            desMaq: '',
+            monMaq: '',
+            plaMaq: '',
+            graMaq: '',
+
+            desIns: '',
+            monIns: '',
+            plaIns: '',
+            graIns: '',
         }),
     }),
     
     computed: {
         computedDateFormattedMomentjs () {
             return this.form.fecNacimiento ? moment(this.form.fecNacimiento).format('DD-MM-YYYY') : ''
+        },
+        dateFormatOpe () {
+            return this.form.iniOperaciones ? moment(this.form.iniOperaciones).format('DD-MM-YYYY') : ''
         },
         //STEP 1
         nomSolicitante () {
@@ -1150,19 +1416,19 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             return errors
         },
 
-        nomEmpresa () {
-            const errors = []
-            if (!this.$v.form.nomEmpresa.$dirty) return errors
-            !this.$v.form.nomEmpresa.required && errors.push('Este campo es obligatorio')
-            return errors
-        },
+        // nomEmpresa () {
+        //     const errors = []
+        //     if (!this.$v.form.nomEmpresa.$dirty) return errors
+        //     !this.$v.form.nomEmpresa.requiredIf && errors.push('Este campo es obligatorio')
+        //     return errors
+        // },
         
-        rfcEmpresa () {
-            const errors = []
-            if (!this.$v.form.rfcEmpresa.$dirty) return errors
-            !this.$v.form.rfcEmpresa.required && errors.push('Este campo es obligatorio')
-            return errors
-        },
+        // rfcEmpresa () {
+        //     const errors = []
+        //     if (!this.$v.form.rfcEmpresa.$dirty) return errors
+        //     !this.$v.form.rfcEmpresa.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        // },
 
         estNacimiento () {
             const errors = []
@@ -1318,6 +1584,14 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             this.err3=false
         },
 
+        perRecados() {
+            const errors = []
+            if (!this.$v.form.perRecados.$dirty) return errors
+            !this.$v.form.perRecados.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err3=false
+        },
+
         //PASO 4
         calNumPar() {
             const errors = []
@@ -1354,6 +1628,13 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             return errors
             this.err4=false
         },
+        tipDomParticular() {
+            const errors = []
+            if (!this.$v.form.tipDomParticular.$dirty) return errors
+            !this.$v.form.tipDomParticular.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err4=false
+        },
         antLocParticular() {
             const errors = []
             if (!this.$v.form.antLocParticular.$dirty) return errors
@@ -1361,10 +1642,10 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             return errors
             this.err4=false
         },
-        tipDomParticular() {
+        antDomActualPar() {
             const errors = []
-            if (!this.$v.form.tipDomParticular.$dirty) return errors
-            !this.$v.form.tipDomParticular.required && errors.push('Este campo es obligatorio')
+            if (!this.$v.form.antDomActualPar.$dirty) return errors
+            !this.$v.form.antDomActualPar.required && errors.push('Este campo es obligatorio')
             return errors
             this.err4=false
         },
@@ -1412,6 +1693,15 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             return errors
             this.err5=false
         },
+
+        otroDomNegocio() {
+            const errors = []
+            if (!this.$v.form.otroDomNegocio.$dirty) return errors
+            !this.$v.form.otroDomNegocio.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err5=false
+        },
+
         sector() {
             const errors = []
             if (!this.$v.form.sector.$dirty) return errors
@@ -1469,6 +1759,14 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             this.err5=false
         },
 
+        rentaNegocio() {
+            const errors = []
+            if (!this.$v.form.rentaNegocio.$dirty) return errors
+            !this.$v.form.rentaNegocio.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err5=false
+        },
+
         //PASO 6
         justCredito() {
             const errors = []
@@ -1477,24 +1775,80 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             return errors
             this.err6=false
         },
-        capTrabajo() {
+        desCap() {
             const errors = []
-            if (!this.$v.form.capTrabajo.$dirty) return errors
-            !this.$v.form.capTrabajo.required && errors.push('Este campo es obligatorio')
+            if (!this.$v.form.desCap.$dirty) return errors
+            !this.$v.form.desCap.required && errors.push('Este campo es obligatorio')
             return errors
             this.err6=false
         },
-        monto() {
+        monCap() {
             const errors = []
-            if (!this.$v.form.monto.$dirty) return errors
-            !this.$v.form.monto.required && errors.push('Este campo es obligatorio')
+            if (!this.$v.form.monCap.$dirty) return errors
+            !this.$v.form.monCap.required && errors.push('Este campo es obligatorio')
             return errors
             this.err6=false
         },
-        plazo() {
+        plaCap() {
             const errors = []
-            if (!this.$v.form.plazo.$dirty) return errors
-            !this.$v.form.plazo.required && errors.push('Este campo es obligatorio')
+            if (!this.$v.form.plaCap.$dirty) return errors
+            !this.$v.form.plaCap.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        desMaq() {
+            const errors = []
+            if (!this.$v.form.desMaq.$dirty) return errors
+            !this.$v.form.desMaq.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        monMaq() {
+            const errors = []
+            if (!this.$v.form.monMaq.$dirty) return errors
+            !this.$v.form.monMaq.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        plaMaq() {
+            const errors = []
+            if (!this.$v.form.plaMaq.$dirty) return errors
+            !this.$v.form.plaMaq.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        graMaq() {
+            const errors = []
+            if (!this.$v.form.graMaq.$dirty) return errors
+            !this.$v.form.graMaq.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        desIns() {
+            const errors = []
+            if (!this.$v.form.desIns.$dirty) return errors
+            !this.$v.form.desIns.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        monIns() {
+            const errors = []
+            if (!this.$v.form.monIns.$dirty) return errors
+            !this.$v.form.monIns.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        plaIns() {
+            const errors = []
+            if (!this.$v.form.plaIns.$dirty) return errors
+            !this.$v.form.plaIns.required && errors.push('Este campo es obligatorio')
+            return errors
+            this.err6=false
+        },
+        graIns() {
+            const errors = []
+            if (!this.$v.form.graIns.$dirty) return errors
+            !this.$v.form.graIns.required && errors.push('Este campo es obligatorio')
             return errors
             this.err6=false
         },
@@ -1516,10 +1870,6 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
       listarMunicipios(){
         axios.get('../api/municipios/'+this.form.estNacimiento).then(({ data }) => (this.municipios = data))            
       },
-
-      listarColonias(){
-          axios.get('../api/colonias/'+this.form.cpParticular).then(({ data }) => (console.log(data)))
-      },  
 
       createGenerales() {
         this.err1 = true   
@@ -1547,10 +1897,29 @@ const rfc = helpers.regex('alpha', /^([ A-ZÑ&]?[A-ZÑ&]{3}) ?(?:- ?)?(\d{2}(?:0
             this.loader = false
             this.alert = true
         })            
-    
-
       },
 
+     createSolicitud() {      
+        this.alert = false
+        this.loader = true
+        this.form.post('/api/solicitud')
+        .then(()=>{
+            toast.fire({
+                type: 'success',
+                title: 'Solicitud iniciada!'
+            })
+            this.loader = false
+            this.el = 2
+            axios.get('../api/reg').then(({ data }) => (this.form.id = data.id, this.form.solicitud_id = data.id, this.form.generales_id = data.id, this.form.destino_id = data.id))
+        }).catch((error)=>{
+            toast.fire({
+                type: 'error',
+                title: 'Ocurrio un Error!'
+            })
+            this.loader = false
+            this.alert = true
+        })            
+      },
       isNumber: function(evt) {
       evt = (evt) ? evt : window.event;
       var charCode = (evt.which) ? evt.which : evt.keyCode;

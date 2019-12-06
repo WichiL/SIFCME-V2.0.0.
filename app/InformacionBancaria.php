@@ -14,6 +14,7 @@ class InformacionBancaria extends Model
 		'clbInterbancaria',
 		'plaza',
 		'sucursal',
-		'ubicacion'
+		'ubicacion',
+		'generales_id'
     ];
 }

@@ -15,21 +15,27 @@ class CreateDomicilioNegociosTable extends Migration
     {
         Schema::create('domicilio_negocios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('id')->references('id')->on('datos_generales');
-            $table->string('calNumNegocio');
-            $table->string('colNegocio');
-            $table->string('munNegocio');
-            $table->string('cpNegocio');
-            $table->string('domFiscal');
-            $table->string('sector');
-            $table->string('actEmpresarial');
-            $table->string('proOfrece');
-            $table->string('expEmpresario');
-            $table->string('expActividad');
-            $table->string('iniOperaciones');
-            $table->string('supNegocio');
-            $table->string('perteneceA');
+            $table->string('calNumNegocio')->nullable();
+            $table->string('colNegocio')->nullable();
+            $table->string('munNegocio')->nullable();
+            $table->string('cpNegocio')->nullable();
+            $table->string('domFiscal')->nullable();
+            $table->string('otroDomNegocio')->nullable();
+            $table->string('sector')->nullable();
+            $table->string('actEmpresarial')->nullable();
+            $table->string('proOfrece')->nullable();
+            $table->string('expEmpresario')->nullable();
+            $table->string('expActividad')->nullable();
+            $table->string('iniOperaciones')->nullable();
+            $table->string('supNegocio')->nullable();
+            $table->string('perteneceA')->nullable();
+            $table->string('rentaNegocio')->nullable();
             $table->timestamps();
+            $table->bigInteger('generales_id')->unsigned();
+            $table->foreign('generales_id')
+                ->references('id')
+                ->on('datos_generales')
+                ->onDelete('cascade');
         });
     }
 

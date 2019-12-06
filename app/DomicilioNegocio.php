@@ -20,6 +20,9 @@ class DomicilioNegocio extends Model
 		'expActividad',
 		'iniOperaciones',
 		'supNegocio',
-		'perteneceA'
+		'perteneceA',
+		'otroDomNegocio',
+		'rentaNegocio',
+		'generales_id'
     ];
 }

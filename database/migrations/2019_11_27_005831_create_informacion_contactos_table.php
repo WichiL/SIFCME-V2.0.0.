@@ -15,14 +15,19 @@ class CreateInformacionContactosTable extends Migration
     {
         Schema::create('informacion_contactos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('id')->references('id')->on('datos_generales');
-            $table->string('email');
-            $table->string('facTwitter');
-            $table->string('telNegocio');
-            $table->string('telParticular');
-            $table->string('telCelular');
-            $table->string('telRecados');
+            $table->string('email')->nullable();
+            $table->string('facTwitter')->nullable();
+            $table->string('telNegocio')->nullable();
+            $table->string('telParticular')->nullable();
+            $table->string('telCelular')->nullable();
+            $table->string('telRecados')->nullable();
+            $table->string('perRecados')->nullable();
             $table->timestamps();
+            $table->bigInteger('generales_id')->unsigned();
+            $table->foreign('generales_id')
+                ->references('id')
+                ->on('datos_generales')
+                ->onDelete('cascade');
         });
     }
 

@@ -10,6 +10,7 @@ class Estructura extends Model
         'id',
         'recPropios',
 		'recFondoPlata',
-		'invTotal',
+        'invTotal',
+        'solicitud_id'
     ];
 }

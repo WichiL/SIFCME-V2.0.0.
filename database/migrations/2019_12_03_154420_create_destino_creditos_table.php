@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudesTable extends Migration
+class CreateDestinoCreditosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateSolicitudesTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitudes', function (Blueprint $table) {
+        Schema::create('destino_creditos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('idPromotor');
-            $table->string('estado');
-
             $table->timestamps();
+            $table->bigInteger('destino_id')->unsigned();
+            $table->foreign('destino_id')
+                ->references('id')
+                ->on('justificacion_destinos')
+                ->onDelete('cascade');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateSolicitudesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitudes');
+        Schema::dropIfExists('destino_creditos');
     }
 }

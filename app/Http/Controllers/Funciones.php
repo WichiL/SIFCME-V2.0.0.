@@ -22,9 +22,5 @@ class Funciones extends Controller
         $municipios = $municipios->pluck('name');
         return $municipios;
     }   
-
-    public function listarColonias($cp){
-        return $json = json_decode(file_get_contents('https://api-codigos-postales.herokuapp.com/v2/codigo_postal/'+$cp), true);
-    }
 }
 

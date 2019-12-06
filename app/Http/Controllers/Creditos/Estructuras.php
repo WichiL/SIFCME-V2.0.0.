@@ -44,61 +44,76 @@ class Estructuras extends Controller
     public function store(Request $request)
     {
 
-        $rules = [
-            //STEP1
-            'recPropios' => 'required',
-            'recFondoPlata' => 'required',
-            'invTotal' => 'required',
+        // $rules = [
+        //     //STEP1
+        //     'recPropios' => 'required',
+        //     'recFondoPlata' => 'required',
+        //     'invTotal' => 'required',
 
-            // REFERENCIAS
-            'nom1' => 'required|string',
-            'perContactar1' => 'required|string',
-            'ubicacion1' => 'required|string',
-            'tel1' => 'required|string',
-            'relacion1' => 'required|string',
-            'limCredito1' => 'required',
-            'yrsRelacion1' => 'required|string',
+        //     // REFERENCIAS
+        //     'nom1' => 'required|string',
+        //     'perContactar1' => 'required|string',
+        //     'ubicacion1' => 'required|string',
+        //     'tel1' => 'required|string',
+        //     'relacion1' => 'required|string',
+        //     'limCredito1' => 'required',
+        //     'yrsRelacion1' => 'required|string',
+        //     'nom2' => 'required|string',
+        //     'perContactar2' => 'required|string',
+        //     'ubicacion2' => 'required|string',
+        //     'tel2' => 'required|string',
+        //     'relacion2' => 'required|string',
+        //     'limCredito2' => 'required',
+        //     'yrsRelacion2' => 'required|string',
+        //     'nom3' => 'required|string',
+        //     'perContactar3' => 'required|string',
+        //     'ubicacion3' => 'required|string',
+        //     'tel3' => 'required|string',
+        //     'relacion3' => 'required|string',
+        //     'limCredito3' => 'required',
+        //     'yrsRelacion3' => 'required|string',
 
-        // NEGOCIO
-            'diasLaborales' => 'required|string',
-            'atiende' => 'required|string',
-            'horario' => 'required|string',
-            'frente' => 'required|string',
-            'lado' => 'required|string',
-            'ubicacion' => 'required|string',
-            'color' => 'required|string',
-            'señalamiento' => 'required|string',
+        // // NEGOCIO
+        //     'diasLaborales' => 'required|string',
+        //     'atiende' => 'required|string',
+        //     'abren' => 'required|string',
+        //     'cierran' => 'required|string',
+        //     'frente' => 'required|string',
+        //     'lado' => 'required|string',
+        //     'ubicacion' => 'required|string',
+        //     'color' => 'required|string',
+        //     'señalamiento' => 'required|string',
 
-        //CREDITOSANTERIORES
-            'nomCredito1' => 'required|string',
-            'montoCredito1' => 'required',
-            'saldoActual1' => 'required',
-            'pago1' => 'required',
-            'mensual1' => 'required',
-            'yr1' => 'required|string',
+        // // //CREDITOSANTERIORES
+        // //     'nomCredito1' => 'required|string',
+        // //     'montoCredito1' => 'required',
+        // //     'saldoActual1' => 'required',
+        // //     'pago1' => 'required',
+        // //     'mensual1' => 'required',
+        // //     'yr1' => 'required|string',
             
-        //MANIFESTACION AVAL
-            'nomAval' => 'required|string',
-            'estCivilAval' => 'required|string',
-            'avalAnterior' => 'required|string',
-            'domAval' => 'required|string',
-            'munAval' => 'required|string',
-            'cpAval' => 'required|string',
-            'telAval' => 'required|string',
-            'parentesco' => 'required|string',
-            'valPatrimonio' => 'required',
-            'consPropiedad' => 'required|string',
-            'numRegistro' => 'required|string',
-            'folio' => 'required|string',
-            'vol' => 'required|string',
-            'secc' => 'required|string',
-            'fecInscripcion' => 'required|string',
-            'domPropiedad' => 'required|string',
-            'munPropiedad' => 'required|string',
-            'cpPropiedad' => 'required|string',
+        // //MANIFESTACION AVAL
+        //     'nomAval' => 'required|string',
+        //     'estCivilAval' => 'required|string',
+        //     'avalAnterior' => 'required|string',
+        //     'domAval' => 'required|string',
+        //     'munAval' => 'required|string',
+        //     'cpAval' => 'required|string',
+        //     'telAval' => 'required|string',
+        //     'parentesco' => 'required|string',
+        //     'valPatrimonio' => 'required',
+        //     'consPropiedad' => 'required|string',
+        //     'numRegistro' => 'required|string',
+        //     'folio' => 'required|string',
+        //     'vol' => 'required|string',
+        //     'secc' => 'required|string',
+        //     'fecInscripcion' => 'required|string',
+        //     'domPropiedad' => 'required|string',
+        //     'munPropiedad' => 'required|string',
+        //     'cpPropiedad' => 'required|string',
             
             
-        ];
+        // ];
         // $messages = [
         //     'nomSolicitante.required' => 'Este campo es obligatorio',
         //     'nomSolicitante.max' => 'Solo se admiten 191 caracteres',
@@ -131,13 +146,12 @@ class Estructuras extends Controller
         //     'ubicacion.required' => 'Este campo es obligatorio',
         //     'ubicacion.max' => 'Solo se admiten 191 caracteres',
         // ];
-        $this->validate($request, $rules);
+        // $this->validate($request, $rules);
         DB::beginTransaction();
         Estructura::create($request->all());
         ManifestacionAval::create($request->all());
         Negocio::create($request->all());
         Referencia::create($request->all());
-        CreditosAnteriore::create($request->all());
         DB::commit();
         return;
         

@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitude extends Model
+class DestinoCredito extends Model
 {
     protected $fillable = [
-        'id', 'estado', 'regimen'
-    ];
+        'id',
+        'destino_id'	
+     ]; 	
 }

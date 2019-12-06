@@ -11,13 +11,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
 
 		App\User::create([
 			'id' => '1',
-			'name' =>  'Luis Humberto Jr Aguayo Robles',
+            'name' =>  'Luis Humberto Jr Aguayo Robles',
+            'username' => 'luisjr1611',
 			'email' => 'luisjr1611@hotmail.com',
-            'user' => 'Administrador',
+            'rol' => 'Administrador',
             'password' => bcrypt('ucantseeme'),// secret
 
 		]);

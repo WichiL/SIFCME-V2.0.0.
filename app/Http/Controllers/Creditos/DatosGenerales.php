@@ -10,8 +10,13 @@ use App\InformacionContacto;
 use App\DomicilioParticular;
 use App\DomicilioNegocio;
 use App\JustificacionDestino;
+use App\DestinoCredito;
 use App\User;
 Use App\DatosGenerale;
+Use App\CapitalTrabajo;
+Use App\InstalacionesFisica;
+Use App\Maquinaria;
+
 use DB;
 
 class DatosGenerales extends Controller
@@ -39,7 +44,7 @@ class DatosGenerales extends Controller
         //     //STEP1
         //     'nomSolicitante' => 'required|string|max:191',
         //     'fecNacimiento' => 'required|string||max:20',
-        //     'lugNacimiento' => 'required|string|max:20',
+        //     // 'lugNacimiento' => 'required|string|max:20',
         //     'edad' => 'required|string|numeric|max:99',
         //     'sexo' => 'required|string|max:10|alpha',
         //     'estCivil' => 'required|string|max:20',
@@ -124,13 +129,16 @@ class DatosGenerales extends Controller
         // ];
         // $this->validate($request, $rules, $messages);
         DB::beginTransaction();
-        Solicitude::create($request->all());
-        DatosGenerale::create($request->all());
+        DatosGenerale::create($request->all());       
         InformacionBancaria::create($request->all());
         InformacionContacto::create($request->all());
         DomicilioParticular::create($request->all());
         DomicilioNegocio::create($request->all());
         JustificacionDestino::create($request->all());
+        DestinoCredito::create($request->all());
+        CapitalTrabajo::create($request->all());
+        Maquinaria::create($request->all());
+        InstalacionesFisica::create($request->all());
         DB::commit();
         return;
     }
@@ -194,17 +202,6 @@ class DatosGenerales extends Controller
     {
         DB::beginTransaction();
         $datG = DatosGenerales::findOrFail($id);
-        $infB = InformacionBancaria::findOrFail($id);
-        $infC = InformacionContacto::findOrFail($id);
-        $domP = DomicilioParticular::findOrFail($id);
-        $domN = DomicilioNegocio::findOrFail($id);
-        $jusD = JustificacionDestino::findOrFail($id);
-        
-        $jusD->delete();
-        $domN ->delete();
-        $domP ->delete();
-        $infC ->delete();
-        $infB ->delete();
         $datG->delete();
         DB::commit();
     }

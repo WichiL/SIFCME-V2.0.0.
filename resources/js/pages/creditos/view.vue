@@ -557,17 +557,19 @@ export default {
             try {
                 axios.get("../../api/generales/"+this.$route.params.id).then(({ data }) => (this.gral = data))
                 axios.get("../../api/estructura/"+this.$route.params.id).then(({ data }) => (this.estru = data))
-                console.log(this.estru)
+                axios.get("../../api/descripcion/"+this.$route.params.id).then(({ data }) => (this.desc = data))
+                axios.get("../../api/declaracion/"+this.$route.params.id).then(({ data }) => (this.decl = data))
+                // console.log(this.estru)
                 
                 console.log(this.estru.id)
                 if(this.estru.id != '')
                     this.EI = false
-                if(this.desc.id != '')
-                    this.DN = false
-                if(this.decl.id != '')
-                    this.DP = false
-                if(this.egre.id != '')
-                    this.IE = false
+                // if(this.desc.id != '')
+                //     this.DN = false
+                // if(this.decl.id != '')
+                //     this.DP = false
+                // if(this.egre.id != '')
+                //     this.IE = false
                 
             } catch (error) {
                 swal.fire("¡Datos Inaccesibles!", "No se pudo obtener la información solicitada de la BD. Vuelva a intentar o llame al Administrador", "error");

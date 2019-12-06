@@ -13,6 +13,8 @@ class InformacionContacto extends Model
 		'telNegocio',
 		'telParticular',
 		'telCelular',		
-		'telRecados'			
+		'telRecados',
+		'perRecados',
+		'generales_id'
     ];
 }

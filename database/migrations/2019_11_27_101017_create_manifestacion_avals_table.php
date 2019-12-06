@@ -33,6 +33,11 @@ class CreateManifestacionAvalsTable extends Migration
             $table->string('domPropiedad');
             $table->string('munPropiedad');
             $table->string('cpPropiedad');
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicitudes')
+                ->onDelete('cascade');;
             $table->timestamps();
         });
     }

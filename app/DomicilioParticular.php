@@ -16,6 +16,7 @@ class DomicilioParticular extends Model
 		'antLocParticular',
 		'antDomActualPar',
 		'tipDomParticular',
-		'valProParticular'
+		'valProParticular',
+		'generales_id'
     ];
 }

@@ -17,12 +17,18 @@ class CreateNegociosTable extends Migration
             $table->bigIncrements('id');
             $table->string('diasLaborales');
             $table->string('atiende');
-            $table->string('horario');
+            $table->string('abren');
+            $table->string('cierran');
             $table->string('frente');
             $table->string('lado');
             $table->string('ubicacion');
             $table->string('color');
             $table->string('señalamiento');
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicitudes')
+                ->onDelete('cascade');;
             $table->timestamps();
         });
     }

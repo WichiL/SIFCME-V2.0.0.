@@ -14,6 +14,21 @@ class Referencia extends Model
 		'tel1',
 		'relacion1',
 		'limCredito1',
-		'yrsRelacion1'
+		'yrsRelacion1',
+		'nom2',
+		'perContactar2',
+		'ubicacion2',
+		'tel2',
+		'relacion2',
+		'limCredito2',
+		'yrsRelacion2',
+		'nom3',
+		'perContactar3',
+		'ubicacion3',
+		'tel3',
+		'relacion3',
+		'limCredito3',
+		'yrsRelacion3',
+        'solicitud_id'
     ];
 }

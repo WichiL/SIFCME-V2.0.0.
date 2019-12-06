@@ -11,6 +11,7 @@ class JustificacionDestino extends Model
         'justCredito',
 		'capTrabajo',
 		'monto',
-		'plazo'		
+        'plazo'	,
+		'generales_id'	
     ];
 }

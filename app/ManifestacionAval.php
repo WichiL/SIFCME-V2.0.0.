@@ -25,6 +25,7 @@ class ManifestacionAval extends Model
 		'fecInscripcion',
 		'domPropiedad',
 		'munPropiedad',
-		'cpPropiedad'
+		'cpPropiedad',
+        'solicitud_id'
     ];
 }

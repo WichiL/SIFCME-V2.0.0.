@@ -23,6 +23,25 @@ class CreateReferenciasTable extends Migration
             $table->string('relacion1');
             $table->string('limCredito1');
             $table->string('yrsRelacion1');
+            $table->string('nom2');
+            $table->string('perContactar2');
+            $table->string('ubicacion2');
+            $table->string('tel2');
+            $table->string('relacion2');
+            $table->string('limCredito2');
+            $table->string('yrsRelacion2');
+            $table->string('nom3');
+            $table->string('perContactar3');
+            $table->string('ubicacion3');
+            $table->string('tel3');
+            $table->string('relacion3');
+            $table->string('limCredito3');
+            $table->string('yrsRelacion3');
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicitudes')
+                ->onDelete('cascade');;
             $table->timestamps();
         });
     }

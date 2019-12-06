@@ -10,11 +10,13 @@ class Negocio extends Model
         'id',
 		'diasLaborales',
 		'atiende',
-		'horario',
+		'abren',
+		'cierran',
 		'frente',
 		'lado',
 		'ubicacion',
 		'color',
-		'señalamiento'
+		'señalamiento',
+        'solicitud_id'
     ];
 }

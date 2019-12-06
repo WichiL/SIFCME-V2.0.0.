@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Solicitudes extends Migration
+class CreateSolicitudesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,6 @@ class Solicitudes extends Migration
     {
         Schema::create('solicitudes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('id')->references('id')->on('datos_generales');
-            $table->string('idPromotor');
             $table->string('estado');
             $table->string('regimen');
             $table->timestamps();
@@ -30,6 +28,6 @@ class Solicitudes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('solicitudes');
     }
 }

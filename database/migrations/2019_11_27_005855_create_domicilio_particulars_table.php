@@ -15,17 +15,21 @@ class CreateDomicilioParticularsTable extends Migration
     {
         Schema::create('domicilio_particulars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreign('id')->references('id')->on('datos_generales');
-            $table->string('calNumPar');
-            $table->string('colParticular');
-            $table->string('munParticular');
-            $table->string('cpParticular');
-            $table->string('tipVivParticular');
-            $table->string('antLocParticular');
-            $table->string('antDomActualPar');
-            $table->string('tipDomParticular');
-            $table->string('valProParticular');
+            $table->string('calNumPar')->nullable();
+            $table->string('colParticular')->nullable();
+            $table->string('munParticular')->nullable();
+            $table->string('cpParticular')->nullable();
+            $table->string('tipVivParticular')->nullable();
+            $table->string('antLocParticular')->nullable();
+            $table->string('antDomActualPar')->nullable();
+            $table->string('tipDomParticular')->nullable();
+            $table->string('valProParticular')->nullable();
             $table->timestamps();
+            $table->bigInteger('generales_id')->unsigned();
+            $table->foreign('generales_id')
+                ->references('id')
+                ->on('datos_generales')
+                ->onDelete('cascade');
         });
     }
 

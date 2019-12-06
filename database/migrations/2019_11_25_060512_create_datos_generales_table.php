@@ -26,6 +26,11 @@ class CreateDatosGeneralesTable extends Migration
             $table->string('estCivil');
             $table->string('curp');
             $table->string('rfc');
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicitudes')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

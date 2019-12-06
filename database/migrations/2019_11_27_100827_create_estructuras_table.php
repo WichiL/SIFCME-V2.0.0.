@@ -18,6 +18,11 @@ class CreateEstructurasTable extends Migration
             $table->string('recPropios');
             $table->string('recFondoPlata');
             $table->string('invTotal');
+            $table->bigInteger('solicitud_id')->unsigned();
+            $table->foreign('solicitud_id')
+                ->references('id')
+                ->on('solicitudes')
+                ->onDelete('cascade');;
             $table->timestamps();
         });
     }

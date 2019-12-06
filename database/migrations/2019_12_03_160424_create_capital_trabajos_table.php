@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJustificacionDestinosTable extends Migration
+class CreateCapitalTrabajosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateJustificacionDestinosTable extends Migration
      */
     public function up()
     {
-        Schema::create('justificacion_destinos', function (Blueprint $table) {
+        Schema::create('capital_trabajos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('justCredito')->nullable();
+            $table->string('desCap')->nullable();
+            $table->string('monCap')->nullable();
+            $table->string('plaCap')->nullable();
             $table->timestamps();
-            $table->bigInteger('generales_id')->unsigned();
-            $table->foreign('generales_id')
+            $table->bigInteger('destino_id')->unsigned();
+            $table->foreign('destino_id')
                 ->references('id')
-                ->on('datos_generales')
+                ->on('destino_creditos')
                 ->onDelete('cascade');
         });
     }
@@ -32,6 +34,6 @@ class CreateJustificacionDestinosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('justificacion_destinos');
+        Schema::dropIfExists('capital_trabajos');
     }
 }

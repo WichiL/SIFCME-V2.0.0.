@@ -1,5 +1,5 @@
 <template>
-  <div>holax</div>
+  <div>EN CONSTRUCCION</div>
 </template>
 
 <script>

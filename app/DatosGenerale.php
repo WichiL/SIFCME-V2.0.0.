@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class DatosGenerale extends Model
 {
     protected $fillable = [
-        'nomSolicitante', 'fecNacimiento', 'lugNacimiento', 'edad', 'sexo', 'estCivil', 'curp', 'rfc'
+       'id', 'solicitud_id', 'nomSolicitante', 'nomEmpresa', 'rfcEmpresa', 'fecNacimiento', 'estNacimiento', 'munNacimiento', 'edad', 'sexo', 'estCivil', 'curp', 'rfc'
     ];
 }

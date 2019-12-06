@@ -61,9 +61,9 @@
                         <v-divider></v-divider>
                         <v-stepper-step color="green" :rules="[() => err3]"  :complete="el > 3" step="3"><p class="subtitle-2 text-center">Negocio</p></v-stepper-step>
                         <v-divider></v-divider>
-                        <v-stepper-step color="green" :rules="[() => err4]"  :complete="el > 4" step="4"><p class="subtitle-2 text-center">Créditos Anteriores</p></v-stepper-step>
+                        <!-- <v-stepper-step color="green" :rules="[() => err4]"  :complete="el > 4" step="4"><p class="subtitle-2 text-center">Créditos Anteriores</p></v-stepper-step> -->
                         <v-divider></v-divider>
-                        <v-stepper-step color="green" :rules="[() => err5]"  :complete="el > 5" step="5"><p class="subtitle-2 text-center">Manifestación Aval</p></v-stepper-step>
+                        <v-stepper-step color="green" :rules="[() => err5]"  :complete="el > 4" step="4"><p class="subtitle-2 text-center">Manifestación Aval</p></v-stepper-step>
                         <v-divider></v-divider>
                         <v-divider></v-divider>
                     </v-stepper-header>
@@ -185,7 +185,7 @@
                                                         </v-text-field>                        
                                                     </v-col>
                                                     <v-col cols="3">
-                                                        <v-text-field color="purple lighten-2" class="title"
+                                                        <v-select color="purple lighten-2" class="title"
                                                             shaped
                                                             rounded
                                                             filled
@@ -194,8 +194,9 @@
                                                             :error-messages="relacion1"
                                                             @blur="$v.form.relacion1.$touch()" 
                                                             @input="$v.form.relacion1.$touch()"
-                                                            label="Relación">
-                                                        </v-text-field>
+                                                            label="Relación"
+                                                            :items="['Cliente', 'Proveedor']">
+                                                        </v-select>
                                                     </v-col>
                                                     <v-col cols="3">
                                                         <v-currency-field color="purple lighten-2" class="title"
@@ -220,7 +221,7 @@
                                                             :error-messages="yrsRelacion1"
                                                             @blur="$v.form.yrsRelacion1.$touch()" 
                                                             @input="$v.form.yrsRelacion1.$touch()"
-                                                            label="Relación Comercial">
+                                                            label="Años de relación Comercial">
                                                         </v-text-field>
                                                     </v-col>
                                                 </v-row>
@@ -288,7 +289,7 @@
                                                         </v-text-field>                        
                                                     </v-col>
                                                     <v-col cols="3">
-                                                        <v-text-field color="purple lighten-2" class="title"
+                                                        <v-select color="purple lighten-2" class="title"
                                                             shaped
                                                             rounded
                                                             filled
@@ -297,8 +298,9 @@
                                                             :error-messages="relacion2"
                                                             @blur="$v.form.relacion2.$touch()" 
                                                             @input="$v.form.relacion2.$touch()"
-                                                            label="Relación">
-                                                        </v-text-field>
+                                                            label="Relación"
+                                                            :items="['Cliente', 'Proveedor']">
+                                                        </v-select>
                                                     </v-col>
                                                     <v-col cols="3">
                                                         <v-currency-field color="purple lighten-2" class="title"
@@ -323,7 +325,7 @@
                                                             :error-messages="yrsRelacion2"
                                                             @blur="$v.form.yrsRelacion2.$touch()" 
                                                             @input="$v.form.yrsRelacion2.$touch()"
-                                                            label="Relación Comercial">
+                                                            label="Años de Relación Comercial">
                                                         </v-text-field>
                                                     </v-col>
                                                 </v-row>
@@ -391,7 +393,7 @@
                                                         </v-text-field>                        
                                                     </v-col>
                                                     <v-col cols="3">
-                                                        <v-text-field color="purple lighten-2" class="title"
+                                                        <v-select color="purple lighten-2" class="title"
                                                             shaped
                                                             rounded
                                                             filled
@@ -400,8 +402,9 @@
                                                             :error-messages="relacion3"
                                                             @blur="$v.form.relacion3.$touch()" 
                                                             @input="$v.form.relacion3.$touch()"
-                                                            label="Relación">
-                                                        </v-text-field>
+                                                            label="Relación"
+                                                            :items="['Cliente', 'Proveedor']">
+                                                        </v-select>
                                                     </v-col>
                                                     <v-col cols="3">
                                                         <v-currency-field color="purple lighten-2" class="title"
@@ -426,7 +429,7 @@
                                                             :error-messages="yrsRelacion3"
                                                             @blur="$v.form.yrsRelacion3.$touch()" 
                                                             @input="$v.form.yrsRelacion3.$touch()"
-                                                            label="Relación Comercial">
+                                                            label="Años de Relación Comercial">
                                                         </v-text-field>
                                                     </v-col>
                                                 </v-row>
@@ -446,7 +449,7 @@
                                 >
                                 <v-row align="center" justify="space-between">
                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                        <v-select color="purple lighten-2" class="title"
                                             v-model="form.diasLaborales"
                                             shaped
                                             rounded
@@ -455,8 +458,9 @@
                                             :error-messages="diasLaborales"
                                             @blur="$v.form.diasLaborales.$touch()" 
                                             @input="$v.form.diasLaborales.$touch()"
-                                            label="Dias Laborales">
-                                        </v-text-field>                        
+                                            label="Dias Laborales"
+                                            :items="['Lunes a Viernes','Lunes a Sabado','Lunes a Domingo']">
+                                        </v-select>                        
                                     </v-col>
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
@@ -472,32 +476,78 @@
                                         </v-text-field>                        
                                     </v-col>
                                     <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                       <v-menu
+                                            ref="menu"
+                                            v-model="menu2"
+                                            :close-on-content-click="false"
+                                            :nudge-right="40"
+                                            :return-value.sync="time"
+                                            transition="scale-transition"
+                                            offset-y
+                                            max-width="290px"
+                                            min-width="290px"
+                                        >
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.abren"
+                                                shaped
+                                                rounded
+                                                filled
+                                                readonly
+                                                prepend-inner-icon="mdi-clock-outline"
+                                                label="Abren"
+                                                v-on="on"
+                                                :error-messages="abren"
+                                                @blur="$v.form.abren.$touch()" 
+                                                @input="$v.form.abren.$touch()"
+                                            ></v-text-field>
+                                            </template>
+                                            <v-time-picker 
+                                            ampm-in-title
+                                            color="green lighten-1"
+                                            v-if="menu2"
                                             v-model="form.abren"
-                                            shaped
-                                            rounded
-                                            filled
-                                            v-mask="time"
-                                            prepend-inner-icon="mdi-clock-outline"
-                                            :error-messages="abren"
-                                            @blur="$v.form.abren.$touch()" 
-                                            @input="$v.form.abren.$touch()"
-                                            label="Abren">
-                                        </v-text-field>                        
+                                            full-width
+                                            @click:minute="$refs.menu.save(form.abren)"
+                                            ></v-time-picker>
+                                        </v-menu>                  
                                     </v-col>
                                     <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                        <v-menu
+                                            ref="menu"
+                                            v-model="menu1"
+                                            :close-on-content-click="false"
+                                            :nudge-right="40"
+                                            :return-value.sync="time"
+                                            transition="scale-transition"
+                                            offset-y
+                                            max-width="290px"
+                                            min-width="290px"
+                                        >
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.cierran"
+                                                shaped
+                                                rounded
+                                                filled
+                                                readonly
+                                                prepend-inner-icon="mdi-clock-outline"
+                                                label="Cierran"
+                                                v-on="on"
+                                                :error-messages="cierran"
+                                                @blur="$v.form.cierran.$touch()" 
+                                                @input="$v.form.cierran.$touch()"
+                                            ></v-text-field>
+                                            </template>
+                                            <v-time-picker
+                                            ampm-in-title 
+                                            color="green lighten-1"
+                                            v-if="menu1"
                                             v-model="form.cierran"
-                                            shaped
-                                            rounded
-                                            filled
-                                            v-mask="time"
-                                            prepend-inner-icon="mdi-clock-outline"
-                                            :error-messages="cierran"
-                                            @blur="$v.form.cierran.$touch()" 
-                                            @input="$v.form.cierran.$touch()"
-                                            label="Cierran">
-                                        </v-text-field>                        
+                                            full-width
+                                            @click:minute="$refs.menu.save(form.cierran)"
+                                            ></v-time-picker>
+                                        </v-menu>            
                                     </v-col>
                                 </v-row>    
                                 <v-row align="center" justify="space-between">    
@@ -528,7 +578,7 @@
                                         </v-text-field>                        
                                     </v-col>
                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
+                                        <v-select color="purple lighten-2" class="title"
                                             v-model="form.ubicacion"
                                             shaped
                                             rounded
@@ -537,11 +587,26 @@
                                             :error-messages="ubicacion"
                                             @blur="$v.form.ubicacion.$touch()" 
                                             @input="$v.form.ubicacion.$touch()"
-                                            label="El Negocio se encuentra en">
-                                        </v-text-field>                        
+                                            label="El Negocio se encuentra en"
+                                            :items="['Casa','Local','Bodega','Mercado','Otro']">
+                                        </v-select>                        
                                     </v-col>
                                 </v-row> 
                                 <v-row align="center" justify="space-between">
+                                    <v-col cols="4">
+                                        <v-text-field v-if="form.ubicacion=='Otro'" color="purple lighten-2" class="title"
+                                            v-model="form.otro"
+                                            shaped
+                                            rounded
+                                            filled
+                                            prepend-inner-icon="mdi-map-marker"
+                                            :error-messages="otro"
+                                            @blur="$v.form.otro.$touch()" 
+                                            @input="$v.form.otro.$touch()"
+                                            label="Otro lugar"
+                                            hint="Especifique en que otro lugar se encuentra el negocio ">
+                                        </v-text-field>                        
+                                    </v-col>
                                     <v-col cols="4">
                                         <v-text-field color="purple lighten-2" class="title"
                                             v-model="form.color"
@@ -572,7 +637,7 @@
                             </v-container>
                         </v-stepper-content>
 
-                        <v-stepper-content step="4">
+                        <!-- <v-stepper-content step="4">
                             <v-container
                                 class="mb-12"
                                 >
@@ -662,41 +727,22 @@
                                     </v-col>
                                 </v-row>      
                             </v-container>
-                        </v-stepper-content>
+                        </v-stepper-content> -->
 
-                        <v-stepper-content step="5">
+                        <v-stepper-content step="4">
                             <v-container
                                 class="mb-12"
                                 >
-                                <v-row align="center" justify="space-between">
-                                    <v-col cols="6">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.nomAval"
-                                            shaped
-                                            rounded
-                                            filled 
-                                            prepend-inner-icon="mdi-account"
-                                            :error-messages="nomAval"
-                                            @blur="$v.form.nomAval.$touch()" 
-                                            @input="$v.form.nomAval.$touch()"
-                                            label="Nombre del Aval">
-                                        </v-text-field>                        
+                                <v-row align="center" justify="space-around">
+                                    <v-col cols="8">
+                                        <v-list-item-title> <p class="title white-text">¿Las escrituras que presenta esta a nombre del solicitante?</p> </v-list-item-title>
+                                    <v-radio-group v-model="form.escriturasSiNo" :mandatory="false" row>
+                                        <v-radio label="Si" value="Si"></v-radio>
+                                        <v-radio label="No" value="No"></v-radio>
+                                    </v-radio-group>      
                                     </v-col>
-                                    <v-col cols="3">
-                                        <v-select color="purple lighten-2" class="title"
-                                            v-model="form.estCivilAval"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-account-supervisor"
-                                            :error-messages="estCivilAval"
-                                            @blur="$v.form.estCivilAval.$touch()" 
-                                            @input="$v.form.estCivilAval.$touch()"
-                                            label="Estado Civil"
-                                            :items="['Soltero(a)', 'Casado(a)', 'Divorciado(a)', 'Viudo(a)', 'Union Libre']">
-                                        </v-select>                        
-                                    </v-col>
-                                    <v-col cols="3">
+                                    
+                                    <v-col cols="4">
                                         <v-select color="purple lighten-2" class="title"
                                             v-model="form.avalAnterior"
                                             shaped
@@ -706,222 +752,446 @@
                                             :error-messages="avalAnterior"
                                             @blur="$v.form.avalAnterior.$touch()" 
                                             @input="$v.form.avalAnterior.$touch()"
-                                            label="¿Ha sido Aval en FP?"
+                                            label="¿Ha sido Aval en Fondo Plata anteriormente?"
                                             :items="['Si', 'No']">
                                         </v-select>                        
-                                    </v-col>
-                                </v-row> 
+                                    </v-col>  
+                                </v-row>
 
-                                <v-row align="center" justify="space-between">
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.cpAval"
-                                            shaped
-                                            rounded
-                                            filled
-                                            v-mask="cp"
-                                            prepend-inner-icon="mdi-map-marker"
-                                            :error-messages="cpAval"
-                                            @blur="$v.form.cpAval.$touch()" 
-                                            @input="$v.form.cpAval.$touch()"
-                                            label="Cod. Postal">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.munAval"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-map-marker"
-                                            :error-messages="munAval"
-                                            @blur="$v.form.munAval.$touch()" 
-                                            @input="$v.form.munAval.$touch()"
-                                            label="Municipio">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="5">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.domAval"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-map-marker"
-                                            :error-messages="domAval"
-                                            @blur="$v.form.domAval.$touch()" 
-                                            @input="$v.form.domAval.$touch()"
-                                            label="Domicilio">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="3">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.telAval"
-                                            shaped
-                                            rounded
-                                            v-mask="tel"
-                                            filled
-                                            prepend-inner-icon="mdi-phone"
-                                            :error-messages="telAval"
-                                            @blur="$v.form.telAval.$touch()" 
-                                            @input="$v.form.telAval.$touch()"
-                                            label="Teléfono">
-                                        </v-text-field>                        
-                                    </v-col>
-                                </v-row>  
 
-                                <v-row align="center" justify="space-between">
-                                    <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.parentesco"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-account-supervisor"
-                                            :error-messages="parentesco"
-                                            @blur="$v.form.parentesco.$touch()" 
-                                            @input="$v.form.parentesco.$touch()"
-                                            label="¿Que parentesco tiene con el solicitante?">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="4">
-                                        <v-currency-field color="purple lighten-2" class="title"
-                                            v-model="form.valPatrimonio"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-currency-usd"
-                                            :error-messages="valPatrimonio"
-                                            @blur="$v.form.valPatrimonio.$touch()" 
-                                            @input="$v.form.valPatrimonio.$touch()"
-                                            label="Valor Patrimonial">
-                                        </v-currency-field>                        
-                                    </v-col>
-                                    <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.consPropiedad"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-file"
-                                            :error-messages="consPropiedad"
-                                            @blur="$v.form.consPropiedad.$touch()" 
-                                            @input="$v.form.consPropiedad.$touch()"
-                                            label="Constancia de Propiedad"
-                                            hint="Escritura de terrenos, casas, etc">
-                                        </v-text-field>                        
-                                    </v-col>
-                                </v-row>                           
+                                <v-card v-if="form.escriturasSiNo == 'Si'">
+                                    <v-row align="center" justify="space-between">
+                                        <v-col cols="12">
+                                            <v-list-item-title> <p class="title white-text">Declaro bajo protesta de decir verdad que:</p> </v-list-item-title>
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <v-currency-field color="purple lighten-2" class="title"
+                                                v-model="form.valPatrimonio"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-currency-usd"
+                                                :error-messages="valPatrimonio"
+                                                @blur="$v.form.valPatrimonio.$touch()" 
+                                                @input="$v.form.valPatrimonio.$touch()"
+                                                label="Valor de mi Patrimonio">
+                                            </v-currency-field>                        
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <v-select color="purple lighten-2" class="title"
+                                                v-model="form.consPropiedad"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-file"
+                                                :error-messages="consPropiedad"
+                                                @blur="$v.form.consPropiedad.$touch()" 
+                                                @input="$v.form.consPropiedad.$touch()"
+                                                label="Constancia de Propiedad"
+                                                :items="['Escritura Casa','Escritura Local','Escritura Terreno',
+                                                'Escritura Bodega','Escritura Departamento','Escritura Edificio']">
+                                            </v-select>                        
+                                        </v-col>
+                                    </v-row>  
 
-                                <v-row align="center" justify="space-between">
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.numRegistro"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-counter"
-                                            :error-messages="numRegistro"
-                                            @blur="$v.form.numRegistro.$touch()" 
-                                            @input="$v.form.numRegistro.$touch()"
-                                            label="No. Registro">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.folio"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-counter"
-                                            :error-messages="folio"
-                                            @blur="$v.form.folio.$touch()" 
-                                            @input="$v.form.folio.$touch()"
-                                            label="Folio">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.vol"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-counter"
-                                            :error-messages="vol"
-                                            @blur="$v.form.vol.$touch()" 
-                                            @input="$v.form.vol.$touch()"
-                                            label="Volumen">
-                                        </v-text-field>                        
-                                    </v-col> 
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.secc"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-counter"
-                                            :error-messages="secc"
-                                            @blur="$v.form.secc.$touch()" 
-                                            @input="$v.form.secc.$touch()"
-                                            label="Sección">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="2">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.fecInscripcion"
-                                            shaped
-                                            rounded
-                                            filled
-                                            v-mask="fecha"
-                                            prepend-inner-icon="mdi-calendar"
-                                            :error-messages="fecInscripcion"
-                                            @blur="$v.form.fecInscripcion.$touch()" 
-                                            @input="$v.form.fecInscripcion.$touch()"
-                                            label="Fecha de Inscripción">
-                                        </v-text-field>                        
-                                    </v-col>
-                                </v-row> 
+                                    <v-row align="center" justify="space-between">
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.numRegistro"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="numRegistro"
+                                                @blur="$v.form.numRegistro.$touch()" 
+                                                @input="$v.form.numRegistro.$touch()"
+                                                label="No. Registro">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.folio"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="folio"
+                                                @blur="$v.form.folio.$touch()" 
+                                                @input="$v.form.folio.$touch()"
+                                                label="Folio">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.vol"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="vol"
+                                                @blur="$v.form.vol.$touch()" 
+                                                @input="$v.form.vol.$touch()"
+                                                label="Volumen">
+                                            </v-text-field>                        
+                                        </v-col> 
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.secc"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="secc"
+                                                @blur="$v.form.secc.$touch()" 
+                                                @input="$v.form.secc.$touch()"
+                                                label="Sección">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        
+                                        <v-col cols="2">
+                                            <v-menu
+                                            v-model="menu3"
+                                            :close-on-content-click="false"
+                                            :nudge-right="40"
+                                            transition="scale-transition"
+                                            offset-y
+                                            min-width="290px"
+                                        >
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field
+                                                color="purple lighten-2" 
+                                                class="title"
+                                                shaped
+                                                rounded
+                                                filled
+                                                :value="computedDateFormattedMomentjs"
+                                                :error-messages="fecInscripcion"
+                                                @blur="$v.form.fecInscripcion.$touch()" 
+                                                @input="$v.form.fecInscripcion.$touch()"
+                                                label="Fecha de Inscripción"
+                                                prepend-inner-icon="mdi-calendar"
+                                                readonly
+                                                v-on="on"
+                                            ></v-text-field>
+                                            </template>
+                                            <v-date-picker color="green lighten-1" locale="es" v-model="form.fecInscripcion" @input="menu3 = false"></v-date-picker>
+                                        </v-menu>                     
+                                        </v-col>
+                                    </v-row>
 
-                                <v-row align="center" justify="space-between">
-                                     <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.cpPropiedad"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-map-marker"
-                                            :error-messages="cpPropiedad"
-                                            @blur="$v.form.cpPropiedad.$touch()" 
-                                            @input="$v.form.cpPropiedad.$touch()"
-                                            label="CP. Propiedad">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.munPropiedad"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-map-marker"
-                                            :error-messages="munPropiedad"
-                                            @blur="$v.form.munPropiedad.$touch()" 
-                                            @input="$v.form.munPropiedad.$touch()"
-                                            label="Municipio Propiedad">
-                                        </v-text-field>                        
-                                    </v-col>
-                                    <v-col cols="4">
-                                        <v-text-field color="purple lighten-2" class="title"
-                                            v-model="form.domPropiedad"
-                                            shaped
-                                            rounded
-                                            filled
-                                            prepend-inner-icon="mdi-map-marker"
-                                            :error-messages="domPropiedad"
-                                            @blur="$v.form.domPropiedad.$touch()" 
-                                            @input="$v.form.domPropiedad.$touch()"
-                                            label="Domicilio Propiedad">
-                                        </v-text-field>                        
-                                    </v-col>
-                                </v-row>    
+                                    <v-row align="center" justify="space-between">
+                                         <v-row align="center" justify="space-between">
+                                            <v-col cols="4">
+                                                <v-text-field color="purple lighten-2" class="title"
+                                                    v-model="form.cpPropiedad"
+                                                    shaped
+                                                    rounded
+                                                    filled
+                                                    v-mask="cp"
+                                                    prepend-inner-icon="mdi-map-marker"
+                                                    :error-messages="cpPropiedad"
+                                                    @blur="$v.form.cpPropiedad.$touch()" 
+                                                    @input="$v.form.cpPropiedad.$touch()"
+                                                    label="CP. Propiedad">
+                                                </v-text-field>                        
+                                            </v-col>
+                                            <v-col cols="4">
+                                                <v-text-field color="purple lighten-2" class="title"
+                                                    v-model="form.munPropiedad"
+                                                    shaped
+                                                    rounded
+                                                    filled
+                                                    prepend-inner-icon="mdi-map-marker"
+                                                    :error-messages="munPropiedad"
+                                                    @blur="$v.form.munPropiedad.$touch()" 
+                                                    @input="$v.form.munPropiedad.$touch()"
+                                                    label="Municipio Propiedad">
+                                                </v-text-field>                        
+                                            </v-col>
+                                            <v-col cols="4">
+                                                <v-text-field color="purple lighten-2" class="title"
+                                                    v-model="form.domPropiedad"
+                                                    shaped
+                                                    rounded
+                                                    filled
+                                                    prepend-inner-icon="mdi-map-marker"
+                                                    :error-messages="domPropiedad"
+                                                    @blur="$v.form.domPropiedad.$touch()" 
+                                                    @input="$v.form.domPropiedad.$touch()"
+                                                    label="Propiedad con domicilio en">
+                                                </v-text-field>                        
+                                            </v-col>
+                                        </v-row>   
+                                    </v-row>
+                                </v-card>    
+
+                                <v-card v-if="form.escriturasSiNo == 'No'">
+                                    <v-row align="center" justify="space-between">
+                                        <v-col cols="4">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.nomAval"
+                                                shaped
+                                                rounded
+                                                filled 
+                                                prepend-inner-icon="mdi-account"
+                                                :error-messages="nomAval"
+                                                @blur="$v.form.nomAval.$touch()" 
+                                                @input="$v.form.nomAval.$touch()"
+                                                label="Nombre completo del Aval"
+                                                hint="El (LA) que suscribe C:">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <v-select color="purple lighten-2" class="title"
+                                                v-model="form.estCivilAval"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-account-supervisor"
+                                                :error-messages="estCivilAval"
+                                                @blur="$v.form.estCivilAval.$touch()" 
+                                                @input="$v.form.estCivilAval.$touch()"
+                                                label="Estado Civil"
+                                                :items="['Soltero(a)', 'Casado(a)', 'Divorciado(a)', 'Viudo(a)', 'Union Libre', 'Concubinato']">
+                                            </v-select>                        
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.parentesco"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-account-supervisor"
+                                                :error-messages="parentesco"
+                                                @blur="$v.form.parentesco.$touch()" 
+                                                @input="$v.form.parentesco.$touch()"
+                                                label="¿Que parentesco tiene con el solicitante?">
+                                            </v-text-field>                        
+                                        </v-col>
+                                    </v-row>    
+
+                                    <v-row align="center" justify="space-between">
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.cpAval"
+                                                shaped
+                                                rounded
+                                                filled
+                                                v-mask="cp"
+                                                prepend-inner-icon="mdi-map-marker"
+                                                :error-messages="cpAval"
+                                                @blur="$v.form.cpAval.$touch()" 
+                                                @input="$v.form.cpAval.$touch()"
+                                                label="Cod. Postal">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.munAval"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-map-marker"
+                                                :error-messages="munAval"
+                                                @blur="$v.form.munAval.$touch()" 
+                                                @input="$v.form.munAval.$touch()"
+                                                label="Municipio Aval">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="5">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.domAval"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-map-marker"
+                                                :error-messages="domAval"
+                                                @blur="$v.form.domAval.$touch()" 
+                                                @input="$v.form.domAval.$touch()"
+                                                label="Domicilio Aval">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="3">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.telAval"
+                                                shaped
+                                                rounded
+                                                v-mask="tel"
+                                                filled
+                                                prepend-inner-icon="mdi-phone"
+                                                :error-messages="telAval"
+                                                @blur="$v.form.telAval.$touch()" 
+                                                @input="$v.form.telAval.$touch()"
+                                                label="Teléfono Aval">
+                                            </v-text-field>                        
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row align="center" justify="space-between">
+                                        <v-col cols="12">
+                                            <v-list-item-title> <p class="title white-text">Declaro bajo protesta de decir verdad que:</p> </v-list-item-title>
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <v-currency-field color="purple lighten-2" class="title"
+                                                v-model="form.valPatrimonio"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-currency-usd"
+                                                :error-messages="valPatrimonio"
+                                                @blur="$v.form.valPatrimonio.$touch()" 
+                                                @input="$v.form.valPatrimonio.$touch()"
+                                                label="Valor de mi Patrimonio">
+                                            </v-currency-field>                        
+                                        </v-col>
+                                        <v-col cols="4">
+                                            <v-select color="purple lighten-2" class="title"
+                                                v-model="form.consPropiedad"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-file"
+                                                :error-messages="consPropiedad"
+                                                @blur="$v.form.consPropiedad.$touch()" 
+                                                @input="$v.form.consPropiedad.$touch()"
+                                                label="Constancia de Propiedad"
+                                                :items="['Escritura Casa','Escritura Local','Escritura Terreno',
+                                                'Escritura Bodega','Escritura Departamento','Escritura Edificio']">
+                                            </v-select>                        
+                                        </v-col>
+                                    </v-row>  
+
+                                    <v-row align="center" justify="space-between">
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.numRegistro"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="numRegistro"
+                                                @blur="$v.form.numRegistro.$touch()" 
+                                                @input="$v.form.numRegistro.$touch()"
+                                                label="No. Registro">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.folio"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="folio"
+                                                @blur="$v.form.folio.$touch()" 
+                                                @input="$v.form.folio.$touch()"
+                                                label="Folio">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.vol"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="vol"
+                                                @blur="$v.form.vol.$touch()" 
+                                                @input="$v.form.vol.$touch()"
+                                                label="Volumen">
+                                            </v-text-field>                        
+                                        </v-col> 
+                                        <v-col cols="2">
+                                            <v-text-field color="purple lighten-2" class="title"
+                                                v-model="form.secc"
+                                                shaped
+                                                rounded
+                                                filled
+                                                prepend-inner-icon="mdi-counter"
+                                                :error-messages="secc"
+                                                @blur="$v.form.secc.$touch()" 
+                                                @input="$v.form.secc.$touch()"
+                                                label="Sección">
+                                            </v-text-field>                        
+                                        </v-col>
+                                        
+                                        <v-col cols="2">
+                                            <v-menu
+                                            v-model="menu3"
+                                            :close-on-content-click="false"
+                                            :nudge-right="40"
+                                            transition="scale-transition"
+                                            offset-y
+                                            min-width="290px"
+                                        >
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field
+                                                color="purple lighten-2" 
+                                                class="title"
+                                                shaped
+                                                rounded
+                                                filled
+                                                :value="computedDateFormattedMomentjs"
+                                                :error-messages="fecInscripcion"
+                                                @blur="$v.form.fecInscripcion.$touch()" 
+                                                @input="$v.form.fecInscripcion.$touch()"
+                                                label="Fecha de Inscripción"
+                                                prepend-inner-icon="mdi-calendar"
+                                                readonly
+                                                v-on="on"
+                                            ></v-text-field>
+                                            </template>
+                                            <v-date-picker color="green lighten-1" locale="es" v-model="form.fecInscripcion" @input="menu3 = false"></v-date-picker>
+                                        </v-menu>                     
+                                        </v-col>
+                                    </v-row>
+
+                                    <v-row align="center" justify="space-between">
+                                         <v-row align="center" justify="space-between">
+                                            <v-col cols="4">
+                                                <v-text-field color="purple lighten-2" class="title"
+                                                    v-model="form.cpPropiedad"
+                                                    shaped
+                                                    rounded
+                                                    filled
+                                                    prepend-inner-icon="mdi-map-marker"
+                                                    :error-messages="cpPropiedad"
+                                                    @blur="$v.form.cpPropiedad.$touch()" 
+                                                    @input="$v.form.cpPropiedad.$touch()"
+                                                    label="CP. Propiedad">
+                                                </v-text-field>                        
+                                            </v-col>
+                                            <v-col cols="4">
+                                                <v-text-field color="purple lighten-2" class="title"
+                                                    v-model="form.munPropiedad"
+                                                    shaped
+                                                    rounded
+                                                    filled
+                                                    prepend-inner-icon="mdi-map-marker"
+                                                    :error-messages="munPropiedad"
+                                                    @blur="$v.form.munPropiedad.$touch()" 
+                                                    @input="$v.form.munPropiedad.$touch()"
+                                                    label="Municipio Propiedad">
+                                                </v-text-field>                        
+                                            </v-col>
+                                            <v-col cols="4">
+                                                <v-text-field color="purple lighten-2" class="title"
+                                                    v-model="form.domPropiedad"
+                                                    shaped
+                                                    rounded
+                                                    filled
+                                                    prepend-inner-icon="mdi-map-marker"
+                                                    :error-messages="domPropiedad"
+                                                    @blur="$v.form.domPropiedad.$touch()" 
+                                                    @input="$v.form.domPropiedad.$touch()"
+                                                    label="Propiedad con domicilio en">
+                                                </v-text-field>                        
+                                            </v-col>
+                                        </v-row>   
+                                    </v-row>
+                                </v-card> 
+                                
+                                
                             </v-container>
                         </v-stepper-content>
                         
@@ -972,6 +1242,8 @@ import {helpers, required, maxLength, numeric, email, alpha, sameAs } from 'vuel
 import Form from 'vform'
 import { mask } from 'vue-the-mask'
 import { mapGetters } from 'vuex'
+import moment from 'moment'
+
 
 // ^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$
 const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/);
@@ -1025,12 +1297,12 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
             señalamiento: { required },
 
         //CREDITOSANTERIORES
-            nomCredito1: { required },
-            montoCredito1: { required },
-            saldoActual1: { required },
-            pago1: { required },
-            mensual1: { required },
-            yr1: { required },
+            // nomCredito1: { required },
+            // montoCredito1: { required },
+            // saldoActual1: { required },
+            // pago1: { required },
+            // mensual1: { required },
+            // yr1: { required },
 
         //MANIFESTACION AVAL
             nomAval: { required },
@@ -1067,12 +1339,16 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
         btnNext: true,
         alert: false,
         loader: false,
+        menu2: false,
         err1: true,
         err2: true,
         err3: true,
         err4: true,
         err5: true,
         err6: true,
+        time: null,
+        menu3: false,
+        menu1: false,
 
         //MASCARAS
         fecha: '##/##/####',
@@ -1087,6 +1363,7 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
         form: new Form({
         //ESTRUCTURA
             id: '',
+            solicitud_id: '',
             recPropios: '',
             recFondoPlata: '',
             invTotal: '',
@@ -1118,23 +1395,25 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
             diasLaborales: '',
             atiende: '',
             horario: '',
-            abren: '',
-            cierran: '',
+            abren: null,
+            cierran: null,
             frente: '',
             lado: '',
             ubicacion: '',
+            otro: '',
             color: '',
             señalamiento: '',
 
-        //CREDITOSANTERIORES
-            nomCredito1: '',
-            montoCredito1: '',
-            saldoActual1: '',
-            pago1: '',
-            mensual1: '',
-            yr1: '',
+        // //CREDITOSANTERIORES
+        //     nomCredito1: '',
+        //     montoCredito1: '',
+        //     saldoActual1: '',
+        //     pago1: '',
+        //     mensual1: '',
+        //     yr1: '',
 
         //MANIFESTACION AVAL
+            escriturasSiNo: '',
             nomAval: '',
             estCivilAval: '',
             avalAnterior: '',
@@ -1158,6 +1437,9 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
     
     computed: {
      
+     computedDateFormattedMomentjs () {
+            return this.form.fecInscripcion ? moment(this.form.fecInscripcion).format('DD-MM-YYYY') : ''
+        },
         //STEP 1
 
         recPropios () {
@@ -1408,49 +1690,49 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
             this.err5=false
         },
 
-        //PASO 4
-        nomCredito1() {
-            const errors = []
-            if (!this.$v.form.nomCredito1.$dirty) return errors
-            !this.$v.form.nomCredito1.required && errors.push('Este campo es obligatorio')
-            return errors
-            this.err5=false
-        },
-        montoCredito1() {
-            const errors = []
-            if (!this.$v.form.montoCredito1.$dirty) return errors
-            !this.$v.form.montoCredito1.required && errors.push('Este campo es obligatorio')
-            return errors
-            this.err5=false
-        },
-        saldoActual1() {
-            const errors = []
-            if (!this.$v.form.saldoActual1.$dirty) return errors
-            !this.$v.form.saldoActual1.required && errors.push('Este campo es obligatorio')
-            return errors
-            this.err5=false
-        },
-        pago1() {
-            const errors = []
-            if (!this.$v.form.pago1.$dirty) return errors
-            !this.$v.form.pago1.required && errors.push('Este campo es obligatorio')
-            return errors
-            this.err5=false
-        },
-        mensual1() {
-            const errors = []
-            if (!this.$v.form.mensual1.$dirty) return errors
-            !this.$v.form.mensual1.required && errors.push('Este campo es obligatorio')
-            return errors
-            this.err5=false
-        },
-        yr1() {
-            const errors = []
-            if (!this.$v.form.yr1.$dirty) return errors
-            !this.$v.form.yr1.required && errors.push('Este campo es obligatorio')
-            return errors
-            this.err5=false
-        },
+        // //PASO 4
+        // nomCredito1() {
+        //     const errors = []
+        //     if (!this.$v.form.nomCredito1.$dirty) return errors
+        //     !this.$v.form.nomCredito1.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        //     this.err5=false
+        // },
+        // montoCredito1() {
+        //     const errors = []
+        //     if (!this.$v.form.montoCredito1.$dirty) return errors
+        //     !this.$v.form.montoCredito1.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        //     this.err5=false
+        // },
+        // saldoActual1() {
+        //     const errors = []
+        //     if (!this.$v.form.saldoActual1.$dirty) return errors
+        //     !this.$v.form.saldoActual1.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        //     this.err5=false
+        // },
+        // pago1() {
+        //     const errors = []
+        //     if (!this.$v.form.pago1.$dirty) return errors
+        //     !this.$v.form.pago1.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        //     this.err5=false
+        // },
+        // mensual1() {
+        //     const errors = []
+        //     if (!this.$v.form.mensual1.$dirty) return errors
+        //     !this.$v.form.mensual1.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        //     this.err5=false
+        // },
+        // yr1() {
+        //     const errors = []
+        //     if (!this.$v.form.yr1.$dirty) return errors
+        //     !this.$v.form.yr1.required && errors.push('Este campo es obligatorio')
+        //     return errors
+        //     this.err5=false
+        // },
 
         //PASO 5
         nomAval() {
@@ -1668,7 +1950,8 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
         this.alert = false
         this.loader = true
         this.$v.$touch()
-        this.form.horario = this.form.abren +' - '+this.form.cierran
+        this.form.id = this.$route.params.id,
+        this.form.solicitud_id = this.$route.params.id,
         this.form.post('/api/estructura')
         .then(()=>{
             toast.fire({
@@ -1704,7 +1987,7 @@ const soloLetras = helpers.regex('alpha', /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/
       nextStep () {
         this.btnBack = true  
         this.el = this.el + 1
-        if(this.el == 5)
+        if(this.el == 4)
         {
             this.btnSave = true
             this.btnNext = false

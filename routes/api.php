@@ -24,9 +24,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::apiResources(['users' => 'API\UserController']);
     Route::apiResources(['generales' => 'Creditos\DatosGenerales']);
     Route::apiResources(['estructura' => 'Creditos\Estructuras']);
+    Route::apiResources(['descripcion' => 'Creditos\DescripcionesNegocio']);
+    Route::apiResources(['declaracion' => 'Creditos\Declaraciones']);
     Route::get('estados', 'Funciones@listarEstados');
     Route::get('municipios/{name}', 'Funciones@listarMunicipios');
-    Route::get('coloniass/{cp}', 'Funciones@listarColonias');
+    Route::post('solicitud', 'Solicitudes@store');
+    Route::get('reg', 'Solicitudes@index');
     Route::post('register', 'Auth\RegisterController@register');
     Route::patch('settings/profile', 'Settings\ProfileController@update');
     Route::patch('settings/password', 'Settings\PasswordController@update');

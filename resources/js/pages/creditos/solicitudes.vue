@@ -165,7 +165,7 @@ export default {
                 confirmButtonText: 'Borrar'
             }).then((result) => {
                 if(result.value) {    
-                    this.form.delete('api/users/'+id).then(()=>{
+                    this.form.delete('../api/generales/'+id).then(()=>{
                     swal.fire(
                         '¡Eliminado Correctamente!',
                         'El usuario seleccionado ha sido eliminado',
